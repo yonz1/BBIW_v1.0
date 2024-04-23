@@ -1,0 +1,160 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using IronPython.Hosting;
+using Microsoft.Scripting.Hosting;
+using System.Threading;
+
+namespace Projet_cs
+{
+    public partial class FormMemory : Form
+    {
+        public FormMemory()
+        {
+            InitializeComponent();
+            listBox_import_pids.Items.Add("Imported PIDs : ");
+        }
+
+        private void FormMemory_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Scan_Click(object sender, EventArgs e)
+        {
+            listbox_result_pids.Items.Clear();
+            System.DateTime Date_S = DateTime.Now;
+            listbox_result_pids.Items.Add("Scan started at :" + Date_S);
+            string pids = listBox_import_pids.GetItemText(listBox_import_pids.SelectedItem);
+            object command = "python3 C:\\Users\\basti\\Desktop\\Projet_cs_4\\Projet_cs\\Scan.py  --memory --add --pid " + pids;
+            listbox_result_pids.Items.Add(pids);
+            run_cmd(command);
+            using (StreamReader file = new StreamReader("../../scan.txt"))
+            {
+                int counter = 0;
+                string ln;
+                while ((ln = file.ReadLine()) != null)
+                {
+                    listbox_result_pids.Items.Add(ln);
+                    counter++;
+                }
+                file.Close();
+            }
+            System.DateTime Date_F = DateTime.Now;
+            listbox_result_pids.Items.Add("Scan finished at :" + Date_F);
+        }
+        private void run_cmd(object command)
+        {
+            System.Diagnostics.ProcessStartInfo procstatinfo = new System.Diagnostics.ProcessStartInfo("cmd", "/c" + command);
+            procstatinfo.UseShellExecute = false;
+            procstatinfo.CreateNoWindow = true;
+            procstatinfo.RedirectStandardOutput = true;
+            System.Diagnostics.Process proc = new System.Diagnostics.Process();
+            proc.StartInfo = procstatinfo;
+            proc.Start();
+            proc.WaitForExit();
+        }
+
+        private void Scan_removed_Click(object sender, EventArgs e)
+        {
+            listbox_result_pids.Items.Clear();
+            System.DateTime Date_S = DateTime.Now;
+            listbox_result_pids.Items.Add("Scan started at :" + Date_S);
+            string pids = listBox_import_pids.GetItemText(listBox_import_pids.SelectedItem);
+            object command = "python3 C:\\Users\\basti\\Desktop\\Projet_cs_4\\Projet_cs\\Scan.py  --memory --remove --pid " + pids;
+            run_cmd(command);
+            using (StreamReader file = new StreamReader("../../scan.txt"))
+            {
+                int counter = 0;
+                string ln;
+                while ((ln = file.ReadLine()) != null)
+                {
+                    listbox_result_pids.Items.Add(ln);
+                    counter++;
+                }
+                file.Close();
+            }
+            System.DateTime Date_F = DateTime.Now;
+            listbox_result_pids.Items.Add("Scan finished at :" + Date_F);
+        }
+
+        private void Scan_all_Click(object sender, EventArgs e)
+        {
+            listbox_result_pids.Items.Clear();
+            System.DateTime Date_S = DateTime.Now;
+            listbox_result_pids.Items.Add("Scan started at :" + Date_S);
+            string pids = listBox_import_pids.GetItemText(listBox_import_pids.SelectedItem);
+            object command = "python3 C:\\Users\\basti\\Desktop\\Projet_cs_4\\Projet_cs\\Scan.py  --memory";
+            run_cmd(command);
+            using (StreamReader file = new StreamReader("../../scan.txt"))
+            {
+                int counter = 0;
+                string ln;
+                while ((ln = file.ReadLine()) != null)
+                {
+                    listbox_result_pids.Items.Add(ln);
+                    counter++;
+                }
+                file.Close();
+            }
+            System.DateTime Date_F = DateTime.Now;
+            listbox_result_pids.Items.Add("Scan finished at :" + Date_F);
+        }
+
+        private void remove_Click(object sender, EventArgs e)
+        {
+            listBox_import_pids.Items.Remove(listBox_import_pids.SelectedItem);
+        }
+
+        private void Clear_Click(object sender, EventArgs e)
+        {
+            listBox_import_pids.Items.Clear(); 
+            listBox_import_pids.Items.Add("Imported PIDs : ");
+        }
+
+        private void Add_file_Click(object sender, EventArgs e)
+        {
+            string imported_pids = textBox_import.Text;
+            textBox_import.Clear();
+            listBox_import_pids.Items.Add(imported_pids);
+        }
+
+        private void Save_file_Click(object sender, EventArgs e)
+        {
+            System.Windows.Forms.OpenFileDialog ofd_transfer = new System.Windows.Forms.OpenFileDialog
+            {
+                InitialDirectory = @"C:\",
+                Title = " Browse File",
+
+                CheckFileExists = true,
+                CheckPathExists = true,
+                Filter = "txt files (*.txt) | *.txt | All file(*.*) | *.*;",
+                FilterIndex = 2,
+                RestoreDirectory = true,
+                ReadOnlyChecked = true,
+                ShowReadOnly = true,
+            };
+
+            if (ofd_transfer.ShowDialog() == DialogResult.OK)
+            {
+                string save_path = ofd_transfer.FileName;
+                System.IO.StreamWriter Savefile = new System.IO.StreamWriter(save_path);
+
+                foreach (var item in listbox_result_pids.Items)
+                {
+                    Savefile.WriteLine(item.ToString());
+                }
+                Savefile.Close();
+                MessageBox.Show("Programm saved");
+
+            }
+        }
+    }
+}
