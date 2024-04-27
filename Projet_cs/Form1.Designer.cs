@@ -178,7 +178,7 @@
             this.SQLite_console.FlatAppearance.BorderSize = 0;
             this.SQLite_console.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.SQLite_console.ForeColor = System.Drawing.Color.Gainsboro;
-            this.SQLite_console.IconChar = FontAwesome.Sharp.IconChar.FileImport;
+            this.SQLite_console.IconChar = FontAwesome.Sharp.IconChar.Database;
             this.SQLite_console.IconColor = System.Drawing.Color.Gainsboro;
             this.SQLite_console.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.SQLite_console.IconSize = 32;

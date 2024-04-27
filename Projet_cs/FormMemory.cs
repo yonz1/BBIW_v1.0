@@ -20,6 +20,7 @@ namespace Projet_cs
         {
             InitializeComponent();
             listBox_import_pids.Items.Add("Imported PIDs : ");
+            Showactionbtn.IconChar = FontAwesome.Sharp.IconChar.EyeSlash;
         }
 
         private void FormMemory_Load(object sender, EventArgs e)
@@ -34,7 +35,6 @@ namespace Projet_cs
             listbox_result_pids.Items.Add("Scan started at :" + Date_S);
             string pids = listBox_import_pids.GetItemText(listBox_import_pids.SelectedItem);
             object command = "python3 C:\\Users\\basti\\Desktop\\Projet_cs_4\\Projet_cs\\Scan.py  --memory --add --pid " + pids;
-            listbox_result_pids.Items.Add(pids);
             run_cmd(command);
             using (StreamReader file = new StreamReader("../../scan.txt"))
             {
@@ -154,6 +154,27 @@ namespace Projet_cs
                 Savefile.Close();
                 MessageBox.Show("Programm saved");
 
+            }
+        }
+
+        private void Showactionbtn_Click_1(object sender, EventArgs e)
+        {
+            if (Killbtn.Visible)
+            {
+                Showactionbtn.IconChar = FontAwesome.Sharp.IconChar.EyeSlash;
+                listBox_action.Hide();
+                Killbtn.Hide();
+                Quarantine.Hide();
+            }
+            else
+            {
+                Showactionbtn.IconChar = FontAwesome.Sharp.IconChar.Eye;
+                listBox_action.BringToFront();
+                listBox_action.Show();
+                Killbtn.BringToFront();
+                Killbtn.Show();
+                Quarantine.BringToFront();
+                Quarantine.Show();
             }
         }
     }

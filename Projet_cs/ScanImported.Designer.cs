@@ -36,6 +36,10 @@
             this.Clear = new System.Windows.Forms.Button();
             this.listBox_import = new System.Windows.Forms.ListBox();
             this.Scan_all = new System.Windows.Forms.Button();
+            this.Showactionbtn = new FontAwesome.Sharp.IconButton();
+            this.listBox_action = new System.Windows.Forms.ListBox();
+            this.removebtn = new System.Windows.Forms.Button();
+            this.Quarantine = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // listbox_result
@@ -170,12 +174,81 @@
             this.Scan_all.UseVisualStyleBackColor = true;
             this.Scan_all.Click += new System.EventHandler(this.Scan_all_Click);
             // 
+            // Showactionbtn
+            // 
+            this.Showactionbtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.Showactionbtn.FlatAppearance.BorderSize = 2;
+            this.Showactionbtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Showactionbtn.ForeColor = System.Drawing.Color.Gainsboro;
+            this.Showactionbtn.IconChar = FontAwesome.Sharp.IconChar.Ns8;
+            this.Showactionbtn.IconColor = System.Drawing.Color.Gainsboro;
+            this.Showactionbtn.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.Showactionbtn.IconSize = 30;
+            this.Showactionbtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.Showactionbtn.Location = new System.Drawing.Point(602, 12);
+            this.Showactionbtn.Name = "Showactionbtn";
+            this.Showactionbtn.Size = new System.Drawing.Size(162, 44);
+            this.Showactionbtn.TabIndex = 9;
+            this.Showactionbtn.Text = "Show action";
+            this.Showactionbtn.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.Showactionbtn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.Showactionbtn.UseVisualStyleBackColor = true;
+            this.Showactionbtn.Click += new System.EventHandler(this.Showactionbtn_Click);
+            // 
+            // listBox_action
+            // 
+            this.listBox_action.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.listBox_action.BackColor = System.Drawing.Color.DarkSlateBlue;
+            this.listBox_action.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.listBox_action.ForeColor = System.Drawing.Color.Gainsboro;
+            this.listBox_action.FormattingEnabled = true;
+            this.listBox_action.ItemHeight = 20;
+            this.listBox_action.Location = new System.Drawing.Point(43, 390);
+            this.listBox_action.Name = "listBox_action";
+            this.listBox_action.Size = new System.Drawing.Size(450, 124);
+            this.listBox_action.TabIndex = 10;
+            this.listBox_action.Visible = false;
+            // 
+            // removebtn
+            // 
+            this.removebtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.removebtn.FlatAppearance.BorderSize = 2;
+            this.removebtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.removebtn.ForeColor = System.Drawing.Color.Gainsboro;
+            this.removebtn.Location = new System.Drawing.Point(508, 390);
+            this.removebtn.Name = "removebtn";
+            this.removebtn.Size = new System.Drawing.Size(75, 23);
+            this.removebtn.TabIndex = 11;
+            this.removebtn.Text = "Remove";
+            this.removebtn.UseVisualStyleBackColor = true;
+            this.removebtn.Visible = false;
+            this.removebtn.Click += new System.EventHandler(this.removebtn_Click);
+            // 
+            // Quarantine
+            // 
+            this.Quarantine.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.Quarantine.FlatAppearance.BorderSize = 2;
+            this.Quarantine.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Quarantine.ForeColor = System.Drawing.Color.Gainsboro;
+            this.Quarantine.Location = new System.Drawing.Point(508, 419);
+            this.Quarantine.Name = "Quarantine";
+            this.Quarantine.Size = new System.Drawing.Size(75, 23);
+            this.Quarantine.TabIndex = 12;
+            this.Quarantine.Text = "Quarantine";
+            this.Quarantine.UseVisualStyleBackColor = true;
+            this.Quarantine.Visible = false;
+            // 
             // ScanImported
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(33)))), ((int)(((byte)(74)))));
             this.ClientSize = new System.Drawing.Size(786, 534);
+            this.Controls.Add(this.Quarantine);
+            this.Controls.Add(this.removebtn);
+            this.Controls.Add(this.listBox_action);
+            this.Controls.Add(this.Showactionbtn);
             this.Controls.Add(this.Scan_all);
             this.Controls.Add(this.listBox_import);
             this.Controls.Add(this.Clear);
@@ -200,5 +273,9 @@
         private System.Windows.Forms.Button Clear;
         private System.Windows.Forms.ListBox listBox_import;
         private System.Windows.Forms.Button Scan_all;
+        private FontAwesome.Sharp.IconButton Showactionbtn;
+        private System.Windows.Forms.ListBox listBox_action;
+        private System.Windows.Forms.Button removebtn;
+        private System.Windows.Forms.Button Quarantine;
     }
 }

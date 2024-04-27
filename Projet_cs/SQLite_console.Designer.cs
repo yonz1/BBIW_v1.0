@@ -28,25 +28,25 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.listBox_import = new System.Windows.Forms.ListBox();
+            this.listbox_display = new System.Windows.Forms.ListBox();
             this.textbox_entry = new System.Windows.Forms.TextBox();
             this.submitbtn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // listBox_import
+            // listbox_display
             // 
-            this.listBox_import.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.listbox_display.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.listBox_import.BackColor = System.Drawing.Color.DarkSlateBlue;
-            this.listBox_import.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.listBox_import.ForeColor = System.Drawing.Color.Gainsboro;
-            this.listBox_import.FormattingEnabled = true;
-            this.listBox_import.ItemHeight = 20;
-            this.listBox_import.Location = new System.Drawing.Point(40, 154);
-            this.listBox_import.Name = "listBox_import";
-            this.listBox_import.Size = new System.Drawing.Size(687, 324);
-            this.listBox_import.TabIndex = 0;
+            this.listbox_display.BackColor = System.Drawing.Color.DarkSlateBlue;
+            this.listbox_display.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.listbox_display.ForeColor = System.Drawing.Color.Gainsboro;
+            this.listbox_display.FormattingEnabled = true;
+            this.listbox_display.ItemHeight = 20;
+            this.listbox_display.Location = new System.Drawing.Point(40, 154);
+            this.listbox_display.Name = "listbox_display";
+            this.listbox_display.Size = new System.Drawing.Size(687, 324);
+            this.listbox_display.TabIndex = 0;
             // 
             // textbox_entry
             // 
@@ -71,6 +71,7 @@
             this.submitbtn.TabIndex = 2;
             this.submitbtn.Text = "Submit";
             this.submitbtn.UseVisualStyleBackColor = true;
+            this.submitbtn.Click += new System.EventHandler(this.submitbtn_Click);
             // 
             // SQLite_console
             // 
@@ -80,9 +81,10 @@
             this.ClientSize = new System.Drawing.Size(786, 534);
             this.Controls.Add(this.submitbtn);
             this.Controls.Add(this.textbox_entry);
-            this.Controls.Add(this.listBox_import);
+            this.Controls.Add(this.listbox_display);
             this.Name = "SQLite_console";
             this.Text = "FormImport";
+            this.Load += new System.EventHandler(this.SQLite_console_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -90,7 +92,7 @@
 
         #endregion
 
-        private System.Windows.Forms.ListBox listBox_import;
+        private System.Windows.Forms.ListBox listbox_display;
         private System.Windows.Forms.TextBox textbox_entry;
         private System.Windows.Forms.Button submitbtn;
     }

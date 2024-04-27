@@ -45,6 +45,7 @@
             this.Fastbtn.TabIndex = 0;
             this.Fastbtn.Text = "Fast Scan";
             this.Fastbtn.UseVisualStyleBackColor = true;
+            this.Fastbtn.Click += new System.EventHandler(this.Fastbtn_Click);
             // 
             // Longbtn
             // 
@@ -57,6 +58,7 @@
             this.Longbtn.TabIndex = 1;
             this.Longbtn.Text = "Long Scan";
             this.Longbtn.UseVisualStyleBackColor = true;
+            this.Longbtn.Click += new System.EventHandler(this.Longbtn_Click);
             // 
             // Completebtn
             // 
@@ -84,6 +86,7 @@
             this.listBox_result_predef.Name = "listBox_result_predef";
             this.listBox_result_predef.Size = new System.Drawing.Size(407, 344);
             this.listBox_result_predef.TabIndex = 3;
+            this.listBox_result_predef.SelectedIndexChanged += new System.EventHandler(this.listBox_result_predef_SelectedIndexChanged);
             // 
             // FormPre_defined
             // 

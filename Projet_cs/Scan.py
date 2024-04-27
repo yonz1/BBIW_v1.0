@@ -1,4 +1,5 @@
-﻿import pstats
+﻿from msilib import Table
+import pstats
 import sys
 import sysconfig
 import os
@@ -9,12 +10,18 @@ import getpass
 import sqlite3
 from datetime import datetime, timedelta
 import time
+import pathlib
 start_time = time.time()
 
-#conn = pymysql.connect(
-#    db='Result.db'
-#    )
 
+### Initialisation des listes de callback
+identifier = []
+instance = []
+offset = []
+
+### Définition du temps comme indicateur de scan 
+now = datetime.now()
+table_string = str(now.year) + "-" + str(now.month) + "-" + str(now.day) + " " + str(now.hour) + ":" +  str(now.minute) + ":" + str(now.second)
 
 
 file1 = open("/Users/basti/Desktop/Projet_cs_4/Projet_cs/scan.txt", "w")
@@ -22,7 +29,7 @@ file1.truncate(0);
 parser = argparse.ArgumentParser()
 parser.add_argument("--memory", help="Use Python scipt to scan memory", action="store_true")
 parser.add_argument("--fast", help="Use Python script to perform a fast scan")
-parser.add_argument("--predefined", help="Use Python script to scan a pre-defined list of files")
+parser.add_argument("--predefined", help="Use Python script to scan a pre-defined list of files", action="store_true")
 parser.add_argument("--imported", help="Use Python script to perform a scan against imported files", type=str)
 parser.add_argument("--remove", help="Provide a PID to remove from the list", action="store_true")
 parser.add_argument("--add", help="Provide a PID to Add in a list", action="store_true")
@@ -30,27 +37,36 @@ parser.add_argument("--pid", help="Provide a PID to Add in a list", type=int)
 args = parser.parse_args()
 
 
+### Result_imported_actions
+con_ria = sqlite3.connect("C:\\Users\\basti\\Desktop\\Projet_cs_4\\Projet_cs\\result_imported_actions.db")
+cur_ria = con_ria.cursor()
+cur_ria.execute("delete from result_scan_actions")
+#cur_ria.execute("CREATE TABLE result_scan_actions(date, file)")
+
+
+### Result_imported_db
+con_i = sqlite3.connect("result2.db")
+cur_i = con_i.cursor()
+cur_i.execute("delete from result_scan_test_manual2")
+
+
+
+
+
+
 
 
 
 ### Def callback for pid scan
 def mycallback_process(data):
-    data = str(data)
-    data2 = data.replace("'", "").replace(",", "\n").replace("{", "").replace("}", "").replace("matches: True", "############################# \nDetected threat against rule:\n")
-    file1.write(data2 + "\n"  + "\n")
+  
     return yara.CALLBACK_CONTINUE
 
 
 ### Def Callback for warning message
 def warning_callback(warning_type, message):
     return yara.CONTINUE
-    #if warning_type == yara.CALLBACK_TOO_MANY_MATCHES:
-    #    print(f"namespace:'{message.namespace}' rule:'{message.rule}' string:'{message.string}'")
-    #    return yara.CALLBACK_CONTINUE
-    #if warning_type == yara.ERROR:
-    #    print("The error was:" + message)
-    #    return yara.CALLBACK_CONTINUE
-        
+
 
 ### Define rule
 rules = yara.compile(filepaths={
@@ -67,6 +83,7 @@ if args.imported:
         ##file1.write(data2 + "\n"  + "\n")
         return yara.CALLBACK_CONTINUE
 
+    ### Correction de la syntaxe
     string = args.imported
     new_string = string.replace("C:\\", "/")
     argument = new_string.replace("\\", "/")
@@ -75,21 +92,67 @@ if args.imported:
     ### Matches
     matches = rules.match(argument, callback=mycallback_files, which_callbacks=yara.CALLBACK_MATCHES, warnings_callback=warning_callback)
     i = len(matches)
+    
+    ### Write into actions DB
+    if (i > 0):
+        data = [
+            (str(table_string), str(string))
+            ] 
+        cur_ria.executemany("INSERT INTO result_scan_actions VALUES(?, ?)", data)
+        con_ria.commit()
+        #res = cur_ria.execute("select * from result_scan_actions")
+        #print(res.fetchall())
+
+
+    ### Write into file to show
     for x in range(i):
         file1.write("############################################\n\n")
         file1.write("The engine detected a threat againt rule : " + str(matches[x].rule) + "\n")
-        file1.write(str(matches[x].meta) + "\n" + "\n")
+        meta_i = str(matches[x].meta) 
+        meta_f = meta_i.replace("'", "").replace("{", "").replace("}", "")
+        file1.write(str(meta_f) + "\n" + "\n")
         for y in range(len(matches[x].strings)):
             file1.write("The threat was an " + str(matches[x].strings[y].identifier) + "\n")
             file1.write("The dangerous strings was : " + str(matches[x].strings[y].instances) + "\n") 
             file1.write("Located at offset : " + str(matches[x].strings[y].instances[0].offset) + "\n" + "\n")
-        
+            
+
+    ### Ecriture de fin de programme
     file1.write("\n" + "\n" + "Number of detected thread : " + str(i) + "\n")
     delta = time.time() - start_time
     file1.write("This program has been executed in " + str(delta) + " seconds" + "\n")
-    file1.close
-    
+    n = 0
 
+
+    ### Syntaxe de stockage dans la base de données de résultat
+    for x in range(i):
+        n = n + 1
+        numero = str(n)
+        name = str(matches[x].rule)
+        meta = str(matches[x].meta)
+        id = name + " : " + meta
+        for y in range(len(matches[x].strings)):
+            identifier.append(str(matches[x].strings[y].identifier)) 
+            instance.append(str(matches[x].strings[y].instances))
+            offset.append(str(matches[x].strings[y].instances[0].offset))
+        
+        data = [
+            (str(table_string), str(numero), str(id), str(identifier), str(instance), str(offset))
+            ]
+        cur_i.executemany("INSERT INTO result_scan_test_manual2 VALUES(?, ?, ?, ?, ?, ?)", data)
+        con_i.commit()
+        identifier.clear()
+        instance.clear()
+        offset.clear()
+        
+    identifier.clear()
+    instance.clear()
+    offset.clear()
+    file1.close
+
+
+
+### Scan de mémoire
 
 if args.memory:
     if args.add:
@@ -97,7 +160,23 @@ if args.memory:
         if pid in psutil.pids():
             try:
                 file1.write("Scanning against pid : " + str(pid) + "\n")
+                p = psutil.Process(pid)
+                file1.write("With name : " + str(p.name()) + "\n")
+                file1.write("With parent process : " + str(p.parent()) + "\n")
+                file1.write("Lauched by the user : " + str(p.username()) + "\n")
                 matches = rules.match(pid=pid, callback=mycallback_process, which_callbacks=yara.CALLBACK_MATCHES, warnings_callback=warning_callback)
+                i = len(matches)
+                for x in range(i):
+                    file1.write("############################################\n\n")
+                    file1.write("The engine detected a threat againt rule : " + str(matches[x].rule) + "\n")
+                    meta_i = str(matches[x].meta)
+                    meta_f = meta_i.replace("'", "").replace("{", "").replace("}", "")
+                    file1.write(str(meta_f) + "\n" + "\n")
+                    for y in range(len(matches[x].strings)):
+                        file1.write("The threat was an " + str(matches[x].strings[y].identifier) + "\n")
+                        file1.write("The dangerous strings was : " + str(matches[x].strings[y].instances) + "\n") 
+                        file1.write("Located at offset : " + str(matches[x].strings[y].instances[0].offset) + "\n" + "\n")
+                
             except yara.Error:
                 file1.write("An error was detected while scanning the Process\n\n")
             except yara.TimeoutError:
@@ -135,137 +214,82 @@ if args.memory:
             delta = time.time() - start_time
             file1.write("This program has been executed in " + str(delta) + " seconds" + "\n")
 
-#if args.memory and args.add and (args.remove == "False"):
-#    print("Add Scan selected")
-#    pid = args.pid
-#    try:
-#        print("Scanning against pid : " + str(pid))
-#        matches = rules.match(pid=pid, callback=mycallback_process, which_callbacks=yara.CALLBACK_MATCHES, warnings_callback=warning_callback)
-#    except yara.Error:
-#        print("An error was detected while scanning the Process\n")
-#    except yara.TimeoutError:
-#        print("The engine has reached the timeout\n" + "Check if your process isn't in trouble ")
-#    
-#
-#if args.memory and (args.add != "true") and args.remove:
-#    print("Remove Scan selected")
-#    list_pid = psutil.pids()
-#    list_pid.remove(args.pid)
-#    print(args)
-#    for pids in list_pid:
-#        try:
-#            print("Scanning against pid : " + str(pids))
-#            matches = rules.match(pid=pids, callback=mycallback_process, which_callbacks=yara.CALLBACK_MATCHES, warnings_callback=warning_callback)
-#        except yara.Error:
-#            print("An error was detected while scanning the Process\n")
-#        except yara.TimeoutError:
-#            print("The engine has reached the timeout\n" + "Check if your process isn't in trouble ")
-#    
-#
-#### Memory scan
-#if args.memory and (args.add != "true") and (args.remove != "true"):
-#    print("All memory Scan selected")
-#    list_pid = psutil.pids()
-#    for pids in list_pid:
-#        try:
-#            print("Scanning against pid : " + str(pids))
-#            matches = rules.match(pid=pids, callback=mycallback_process, which_callbacks=yara.CALLBACK_MATCHES, warnings_callback=warning_callback)
-#        except yara.Error:
-#            print("An error was detected while scanning the Process\n")
-#        except yara.TimeoutError:
-#            print("The engine has reached the timeout\n" + "Check if your process isn't in trouble ")
-#
-#
-    
-
-    ### Filter programm 
-    ### To in order to konw the difference of execution time
-    
-        
-    #argument = args.memory
-    #file1.write("Scanning process" + str(argument))
-    #matches =  rules.match(pid=argument, callback=mycallback_process, which_callbacks=yara.CALLBACK_MATCHES, warnings_callback=warning_callback)
-    #print(matches)
-    #list_pid = psutil.pids()
-    #list_pid.remove(0)
-    #list_pid.remove(4)
-    #current_pid = os.getpid()
-    #print(current_pid)
-    #p2 = psutil.Process(current_pid)
-    #user_name = p2.username()
-    #print(user_name)
-    #for proc in psutil.process_iter(['username','pid']):
-    #    try:
-    #        cmdline = proc.cmdline()
-    #    except psutil.AccessDenied:
-    #        list_pid.remove(proc.pid)
-    #        print("Removed : " + str(proc.pid))
-    #        continue
-    #    except (psutil.ZombieProcess, psutil.NoSuchProcess):
-    #        list_pid.remove(proc.pid)
-    #        print("Zombie")
-    #        continue
-    #    except Exception as e:
-    #        print("Quelque chose ne vas pas avec ce processus")
-    #        
-    #    x = proc.info['pid']
-    #    p = psutil.Process(x)
-    #    string = str(p.parent())
-    #    Av_solution = string.find('QHActiveDefense')
-    #    print(Av_solution)
-    #    if ((proc.info['username'] == user_name) and (Av_solution == -1)):
-    #        print("Good user find at pid : " + str(proc.info['pid']))
-    #    else:
-    #        print("Bad user find at pid : " + str(proc.info['pid']))
-    #        if x in list_pid:
-    #             list_pid.remove(x)
-    #             print("Removed while in list: " + str(proc.info['pid']))
-    #print(list_pid)
-   
-
-    ### Second filtrer programm
-
-   # user_name = getpass.getuser()
-   # print(user_name)
-   # process_dict = {proc.pid:proc.name() for proc2 in psutil.process_iter() if proc.username() == user_name}
-   # print(process_dict)
-   # print(os.getlogin())
-    #user_name = getpass.getuser()
-    #print(user_name)
-
-        #    list_pid.remove(proc2.info['pid'])
-        #    print("Removed : " + str(proc2.info['pid']))
-
-
-
-        #for pids in list_pid:
-        #print("Scanning against : " + str(pids))
-        #file1.write("Scanning against : " + str(pids))
-        #p = psutil.Process.parent(pids)
-        #string = str(p.parent())
-        #print(string)
-        #if string.find('QHActiveDefense') != -1:
-        #    print("find AV process")
-        #else:
-        #    print("Process thaht will be scanned : " + str(pids))
-        #    #matches = rules.match(pid=pids, callback=mycallback_process, which_callbacks=yara.CALLBACK_MATCHES, warnings_callback=warning_callback)
-        #    #print(matches)
-           
-    
-    
-
-
-
-
-
-### Fast scan
-
- 
-
-
 
 
 ### Pre-defined scan
+
+if args.predefined:
+    totfiles = ["C:/Users/basti/Documents/", "C:/Users/basti/Desktop/", "C:/Users/basti/Downloads", "C:/Users/basti/Pictures"]
+    for files in totfiles:
+        files = [f for f in pathlib.Path(files).iterdir() if f.is_file()] 
+        for x in files:
+            x = str(x)
+            file1.write("Scanning againt file : " + x + "\n")
+            def mycallback(data):
+                #data = str(data)
+                #data2 = data.replace("'", "").replace(",", "\n").replace("{", "").replace("}", "").replace("matches: True", "Detected threat against :\n")
+                #string_to_write = data2 + "\n" + "#############################" + "\n"
+                return yara.CALLBACK_CONTINUE
+            try:
+                matches = rules.match(x, callback=mycallback, which_callbacks=yara.CALLBACK_MATCHES, timeout=30)
+    
+                i = len(matches)
+                print(i)
+                if (i > 0):
+                    a = "\n" + "Number of detected thread : " + str(i) + "\n" + "\n"
+                    print("detected")
+                    n = 0
+                    #res = cur_i.execute("select * from result_scan_test_manual2")
+                    ### Loop for matches
+                    for x in range(i):
+                    
+                        n = n + 1
+                        file1.write("############################################\n\n")
+                        file1.write("This rule was the rule number : " + str(n) + "\n")
+                        file1.write("The engine detected a threat againt rule : " + str(matches[x].rule) + "\n")
+                        meta_i = str(matches[x].meta) 
+                        meta_f = meta_i.replace("'", "").replace("{", "").replace("}", "")
+                        file1.write(str(meta_f) + "\n" + "\n")
+                        for y in range(len(matches[x].strings)):
+                            file1.write("The threat was an " + str(matches[x].strings[y].identifier) + "\n")
+                            file1.write("The dangerous strings was : " + str(matches[x].strings[y].instances) + "\n") 
+                            file1.write("Located at offset : " + str(matches[x].strings[y].instances[0].offset) + "\n" + "\n")
+                    ### Syntaxe de stockage dans la base de données de résultat
+                    n = 0
+                    for x in range(i):
+                        n = n + 1
+                        numero = str(n)
+                        name = str(matches[x].rule)
+                        meta = str(matches[x].meta)
+                        id = name + " : " + meta
+                        for y in range(len(matches[x].strings)):
+                            identifier.append(str(matches[x].strings[y].identifier)) 
+                            instance.append(str(matches[x].strings[y].instances))
+                            offset.append(str(matches[x].strings[y].instances[0].offset))
+                        
+                        data = [
+                            (str(table_string), str(numero), str(id), str(identifier), str(instance), str(offset))
+                            ]
+                        cur_i.executemany("INSERT INTO result_scan_test_manual2 VALUES(?, ?, ?, ?, ?, ?)", data)
+                        con_i.commit()
+                        identifier.clear()
+                        instance.clear()
+                        offset.clear()
+                        
+                    identifier.clear()
+                    instance.clear()
+                    offset.clear()
+                else:
+                    file1.write("No threats were detected in this file\n\n")
+            except yara.TimeoutError:
+                file1.write("The scanning process has reach the timeout\n\n")
+            except yara.Error:
+                file1.write("A error has been detcted\n\n")
+    delta = time.time() - start_time
+    file1.write("This program has been executed in " + str(delta) + " seconds" + "\n")
+    file1.close()
+    
+
 
     
 

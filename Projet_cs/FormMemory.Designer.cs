@@ -38,6 +38,10 @@
             this.listbox_result_pids = new System.Windows.Forms.ListBox();
             this.Scan_removed = new System.Windows.Forms.Button();
             this.textBox_import = new System.Windows.Forms.TextBox();
+            this.Showactionbtn = new FontAwesome.Sharp.IconButton();
+            this.Quarantine = new System.Windows.Forms.Button();
+            this.Killbtn = new System.Windows.Forms.Button();
+            this.listBox_action = new System.Windows.Forms.ListBox();
             this.SuspendLayout();
             // 
             // Scan_all
@@ -191,12 +195,80 @@
             this.textBox_import.Size = new System.Drawing.Size(358, 26);
             this.textBox_import.TabIndex = 18;
             // 
+            // Showactionbtn
+            // 
+            this.Showactionbtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.Showactionbtn.FlatAppearance.BorderSize = 2;
+            this.Showactionbtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Showactionbtn.ForeColor = System.Drawing.Color.Gainsboro;
+            this.Showactionbtn.IconChar = FontAwesome.Sharp.IconChar.Ns8;
+            this.Showactionbtn.IconColor = System.Drawing.Color.Gainsboro;
+            this.Showactionbtn.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.Showactionbtn.IconSize = 30;
+            this.Showactionbtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.Showactionbtn.Location = new System.Drawing.Point(602, 12);
+            this.Showactionbtn.Name = "Showactionbtn";
+            this.Showactionbtn.Size = new System.Drawing.Size(162, 44);
+            this.Showactionbtn.TabIndex = 19;
+            this.Showactionbtn.Text = "Show action";
+            this.Showactionbtn.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.Showactionbtn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.Showactionbtn.UseVisualStyleBackColor = true;
+            this.Showactionbtn.Click += new System.EventHandler(this.Showactionbtn_Click_1);
+            // 
+            // Quarantine
+            // 
+            this.Quarantine.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.Quarantine.FlatAppearance.BorderSize = 2;
+            this.Quarantine.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Quarantine.ForeColor = System.Drawing.Color.Gainsboro;
+            this.Quarantine.Location = new System.Drawing.Point(498, 423);
+            this.Quarantine.Name = "Quarantine";
+            this.Quarantine.Size = new System.Drawing.Size(75, 23);
+            this.Quarantine.TabIndex = 23;
+            this.Quarantine.Text = "Quarantine";
+            this.Quarantine.UseVisualStyleBackColor = true;
+            this.Quarantine.Visible = false;
+            // 
+            // Killbtn
+            // 
+            this.Killbtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.Killbtn.FlatAppearance.BorderSize = 2;
+            this.Killbtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Killbtn.ForeColor = System.Drawing.Color.Gainsboro;
+            this.Killbtn.Location = new System.Drawing.Point(498, 394);
+            this.Killbtn.Name = "Killbtn";
+            this.Killbtn.Size = new System.Drawing.Size(75, 23);
+            this.Killbtn.TabIndex = 22;
+            this.Killbtn.Text = "Kill";
+            this.Killbtn.UseVisualStyleBackColor = true;
+            this.Killbtn.Visible = false;
+            // 
+            // listBox_action
+            // 
+            this.listBox_action.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.listBox_action.BackColor = System.Drawing.Color.DarkSlateBlue;
+            this.listBox_action.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.listBox_action.ForeColor = System.Drawing.Color.Gainsboro;
+            this.listBox_action.FormattingEnabled = true;
+            this.listBox_action.ItemHeight = 20;
+            this.listBox_action.Location = new System.Drawing.Point(33, 394);
+            this.listBox_action.Name = "listBox_action";
+            this.listBox_action.Size = new System.Drawing.Size(450, 124);
+            this.listBox_action.TabIndex = 21;
+            this.listBox_action.Visible = false;
+            // 
             // FormMemory
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(33)))), ((int)(((byte)(74)))));
             this.ClientSize = new System.Drawing.Size(786, 534);
+            this.Controls.Add(this.Quarantine);
+            this.Controls.Add(this.Killbtn);
+            this.Controls.Add(this.listBox_action);
+            this.Controls.Add(this.Showactionbtn);
             this.Controls.Add(this.textBox_import);
             this.Controls.Add(this.Scan_removed);
             this.Controls.Add(this.Scan_all);
@@ -227,5 +299,9 @@
         private System.Windows.Forms.ListBox listbox_result_pids;
         private System.Windows.Forms.Button Scan_removed;
         private System.Windows.Forms.TextBox textBox_import;
+        private FontAwesome.Sharp.IconButton Showactionbtn;
+        private System.Windows.Forms.Button Quarantine;
+        private System.Windows.Forms.Button Killbtn;
+        private System.Windows.Forms.ListBox listBox_action;
     }
 }
