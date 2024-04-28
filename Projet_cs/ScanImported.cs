@@ -18,6 +18,7 @@ using System.Threading;
 using System.Data.SQLite;
 using System.Drawing.Drawing2D;
 using System.Drawing.Text;
+using System.Runtime.InteropServices.WindowsRuntime;
 
 
 
@@ -26,12 +27,58 @@ namespace Projet_cs
 {
     public partial class ScanImported : Form
     {
+        SortedList<byte, int> slTimeSymbolAppears;
+        SortedList<byte, double> slEntropy;
+        double dblEntropy;
+        bool blnUsed;
+        int iSize;
         public ScanImported()
         {
             InitializeComponent();
             listBox_import.Items.Add("Imported file path : " + "\n");
             Showactionbtn.IconChar = FontAwesome.Sharp.IconChar.EyeSlash;
         }
+
+        public int Size2
+        {
+            get
+            {
+                return iSize;
+            }
+            private set
+            {
+                iSize = value;
+            }
+        }
+        public int Unique
+        {
+            get
+            {
+                return slTimeSymbolAppears.Count;
+            }
+        }
+        public double Entropy
+        {
+            get
+            {
+                return GetEntropy();
+            }
+        }
+        public Dictionary<byte, int> Distribution
+        { 
+            get
+            {
+                return SortedDistribution();
+            }
+        }
+        public Dictionary<byte, double> Probability
+        {
+            get
+            {
+                return SortedProbability();
+            }
+        }
+
 
         private void Save_file_Click(object sender, EventArgs e)
         {
@@ -92,9 +139,10 @@ namespace Projet_cs
             System.DateTime Date_S = DateTime.Now;
             listbox_result.Items.Add("Scan started at :" + Date_S);
             string path = listBox_import.GetItemText(listBox_import.SelectedItem);
+            ShannonEntropy(path);
             object command = "python3 C:\\Users\\basti\\Desktop\\Projet_cs_4\\Projet_cs\\Scan.py  --imported " + path;
             run_cmd(command);
-            using (StreamReader file = new StreamReader("../../scan.txt"))
+            using (StreamReader file = new StreamReader("../../scan_i.txt"))
             {
                 int counter = 0;
                 string ln;
@@ -177,6 +225,12 @@ namespace Projet_cs
             {
                 File.Delete(str);
                 MessageBox.Show("Succes");
+                string conSource = "Data Source=C:\\Users\\basti\\Desktop\\Projet_cs_4\\Projet_cs\\result2.db";
+                var connection = new SQLiteConnection(conSource);
+                connection.Open();
+                string query = "DELETE from result_scan_actions WHERE file=" + str;
+                var command = new SQLiteCommand(query, connection);
+                connection.Close();
             }
             catch (ArgumentException) { MessageBox.Show("Argument"); }
             //catch (IOException) { MessageBox.Show("Execption IO "); }
@@ -188,19 +242,175 @@ namespace Projet_cs
         }
         private void readdb()
         {
-            string conSource = "Data Source=C:\\Users\\basti\\Desktop\\Projet_cs_4\\Projet_cs\\result_imported_actions.db";
+            listBox_action.Items.Clear();
+            string conSource = "Data Source=C:\\Users\\basti\\Desktop\\Projet_cs_4\\Projet_cs\\result2.db";
             var connection = new SQLiteConnection(conSource);
             connection.Open();
-            string query = "select * from result_scan_actions ";
+            string query = "select * from result_scan_actions";
             var command = new SQLiteCommand(query, connection);
             var reader = command.ExecuteReader();
             while (reader.Read())
             {
-                //string myread = reader.GetString(0);
-                listBox_action.Items.Add(reader.GetString(1));
+                listBox_action.Items.Add(reader.GetString(0));
             }
             connection.Close();
         }
-        
+
+        // Debut du calcul de l'entropie
+        public byte GreatestDistribution()
+        {
+            return slTimeSymbolAppears.Keys[0];
+        }
+
+        public byte GreatestProbability()
+        {
+            return slEntropy.Keys[0];
+        }
+
+        public double SymbolDistribution(byte bSymbol)
+        {
+            return slTimeSymbolAppears[bSymbol];
+        }
+
+        public double SymbolEntropy(byte bSymbol)
+        {
+            return slEntropy[bSymbol];
+        }
+
+        public Dictionary<byte, int> SortedDistribution()
+        {
+
+            List<Tuple<int, byte>> lstEntries = new
+               List<Tuple<int, byte>>();
+
+            foreach (KeyValuePair<byte, int> e in slTimeSymbolAppears)
+            {
+                lstEntries.Add(new Tuple<int, byte>(e.Value, e.Key));
+            }
+            lstEntries.Sort();
+            lstEntries.Reverse();
+            Dictionary<byte, int> dicResult = new
+               Dictionary<byte, int>();
+            foreach (Tuple<int, byte> e in lstEntries)
+            {
+                dicResult.Add(e.Item2, e.Item1);
+            }
+            return dicResult;
+
+        }
+
+        public Dictionary<byte, double> SortedProbability()
+        {
+
+            List<Tuple<double, byte>> lstEntries = new
+               List<Tuple<double, byte>>();
+            foreach (KeyValuePair<byte, double> e in slEntropy)
+            {
+                lstEntries.Add(new Tuple<double, byte>(e.Value, e.Key));
+            }
+            lstEntries.Sort();
+            lstEntries.Reverse();
+            Dictionary<byte, double> dicResult = new
+               Dictionary<byte, double>();
+
+            foreach (Tuple<double, byte> e in lstEntries)
+            {
+                dicResult.Add(e.Item2, e.Item1);
+            }
+            return dicResult;
+        }
+
+        public double GetEntropy()
+        {
+            if (!blnUsed)
+            {
+                return dblEntropy;
+            }
+            dblEntropy = 0;
+            slEntropy = new SortedList<byte, double>();
+            foreach (KeyValuePair<byte, int> e in slTimeSymbolAppears)
+            {
+                slEntropy.Add(e.Key, (double)slTimeSymbolAppears[e.Key] /
+                   (double)iSize);
+            }
+            foreach (KeyValuePair<byte, double> e in slEntropy)
+            {
+                dblEntropy += e.Value * Math.Log((1 / e.Value), 2);
+            }
+            blnUsed = false;
+            listbox_result.Items.Add("The selected file entropy is : " + System.Convert.ToString(dblEntropy));
+            if (dblEntropy > 3.5 &&  dblEntropy < 5)
+            {
+                listbox_result.Items.Add("This file has the entropy of standard english text\n");
+            }
+            if (dblEntropy > 7.5)
+            {
+                listbox_result.Items.Add("This file has the entropy of a compressed or encrypted file\n");
+            }
+            if (dblEntropy < 3.5)
+            {
+                listbox_result.Items.Add("This file has the entropy of a normal file\n");
+            }
+            return dblEntropy;
+        }
+
+        public void GetBytes(byte[] bBytes)
+        {
+            if (bBytes.Length < 1 || bBytes == null)
+            {
+
+                return;
+
+            }
+            blnUsed = true;
+            iSize += bBytes.Length;
+            foreach (byte bt in bBytes)
+            {
+                if (!slTimeSymbolAppears.ContainsKey(bt))
+                {
+                    slTimeSymbolAppears.Add(bt, 1);
+                    continue;
+                }
+                slTimeSymbolAppears[bt]++;
+            }
+        }
+
+        public void GetBytes(string strBytes)
+        {
+            GetBytes(StringToByteArray(strBytes));
+        }
+
+        byte[] StringToByteArray(string strInput)
+        {
+            char[] c = strInput.ToCharArray();
+            IEnumerable<byte> b = c.Cast<byte>();
+            return b.ToArray();
+        }
+
+        void Clear2()
+        {
+            blnUsed = true;
+            dblEntropy = 0;
+            iSize = 0;
+            slTimeSymbolAppears = new SortedList<byte, int>();
+            slEntropy = new SortedList<byte, double>();
+        }
+
+        public void ShannonEntropy(string fileName)
+        {
+            Clear2();
+            if (File.Exists(fileName))
+            {
+                GetBytes(File.ReadAllBytes(fileName));
+                GetEntropy();
+                SortedDistribution();
+            }
+        }
+
+        public void ShannonEntropy_c()
+        {
+            Clear2();
+            return;
+        }
     }
 }

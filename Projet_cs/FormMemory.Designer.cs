@@ -243,6 +243,7 @@
             this.Killbtn.Text = "Kill";
             this.Killbtn.UseVisualStyleBackColor = true;
             this.Killbtn.Visible = false;
+            this.Killbtn.Click += new System.EventHandler(this.Killbtn_Click);
             // 
             // listBox_action
             // 

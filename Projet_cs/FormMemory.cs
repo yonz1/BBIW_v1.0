@@ -11,6 +11,8 @@ using System.Windows.Forms;
 using IronPython.Hosting;
 using Microsoft.Scripting.Hosting;
 using System.Threading;
+using System.Data.SQLite;
+using System.Diagnostics;
 
 namespace Projet_cs
 {
@@ -36,7 +38,7 @@ namespace Projet_cs
             string pids = listBox_import_pids.GetItemText(listBox_import_pids.SelectedItem);
             object command = "python3 C:\\Users\\basti\\Desktop\\Projet_cs_4\\Projet_cs\\Scan.py  --memory --add --pid " + pids;
             run_cmd(command);
-            using (StreamReader file = new StreamReader("../../scan.txt"))
+            using (StreamReader file = new StreamReader("../../scan_p.txt"))
             {
                 int counter = 0;
                 string ln;
@@ -70,7 +72,7 @@ namespace Projet_cs
             string pids = listBox_import_pids.GetItemText(listBox_import_pids.SelectedItem);
             object command = "python3 C:\\Users\\basti\\Desktop\\Projet_cs_4\\Projet_cs\\Scan.py  --memory --remove --pid " + pids;
             run_cmd(command);
-            using (StreamReader file = new StreamReader("../../scan.txt"))
+            using (StreamReader file = new StreamReader("../../scan_p.txt"))
             {
                 int counter = 0;
                 string ln;
@@ -93,7 +95,7 @@ namespace Projet_cs
             string pids = listBox_import_pids.GetItemText(listBox_import_pids.SelectedItem);
             object command = "python3 C:\\Users\\basti\\Desktop\\Projet_cs_4\\Projet_cs\\Scan.py  --memory";
             run_cmd(command);
-            using (StreamReader file = new StreamReader("../../scan.txt"))
+            using (StreamReader file = new StreamReader("../../scan_p.txt"))
             {
                 int counter = 0;
                 string ln;
@@ -175,6 +177,43 @@ namespace Projet_cs
                 Killbtn.Show();
                 Quarantine.BringToFront();
                 Quarantine.Show();
+                readdb();
+            }
+        }
+        private void readdb()
+        {
+            listBox_action.Items.Clear();
+            string conSource = "Data Source=C:\\Users\\basti\\Desktop\\Projet_cs_4\\Projet_cs\\result2.db";
+            var connection = new SQLiteConnection(conSource);
+            connection.Open();
+            string query = "select * from result_scan_actions_process";
+            var command = new SQLiteCommand(query, connection);
+            var reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                listBox_action.Items.Add(reader.GetString(0));
+            }
+            connection.Close();
+        }
+
+        private void Killbtn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string str = listBox_action.SelectedItem.ToString();
+                Process proc = Process.GetProcessById(System.Convert.ToInt16(str));
+                proc.Kill();
+                listBox_action.Items.Remove(listBox_action.SelectedItem);
+                string conSource = "Data Source=C:\\Users\\basti\\Desktop\\Projet_cs_4\\Projet_cs\\result2.db";
+                var connection = new SQLiteConnection(conSource);
+                connection.Open();
+                string query = "DELETE from result_scan_actions_process WHERE pids='" + str + "';";
+                var command = new SQLiteCommand(query, connection);
+                connection.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error detected");
             }
         }
     }

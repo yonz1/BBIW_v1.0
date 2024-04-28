@@ -31,7 +31,7 @@ namespace Projet_cs
             object command = "python3 C:\\Users\\basti\\Desktop\\Projet_cs_4\\Projet_cs\\Scan.py  --predefined";
             run_cmd(command);
             //readdb();
-            using (StreamReader file = new StreamReader("../../scan.txt"))
+            using (StreamReader file = new StreamReader("../../scan_pr.txt"))
             {
                 int counter = 0;
                 string ln;
