@@ -4,7 +4,7 @@ import "math"
 
 rule Dangerous_function {
 	meta:
-		KEY = "VALUE"
+		information = "Function that could be hijacked if not used by official services"
 	strings:
 		$API1 = "GetExtendedTcpTable"		
 		$API2 = "NetServerGetInfo"
@@ -24,7 +24,7 @@ rule Dangerous_function {
 
 rule score_py {
 	meta:
-		KEY = "VALUE"
+		information = "Function that could be hijacked if not used by official services"
 	strings:
 		$func1 = "key = Fernet.generate_key()" wide
 		$func2 = "system('pip install -r requirements.txt')" 
@@ -39,7 +39,7 @@ rule score_py {
 
 rule MD5_API {
 	meta:
-		KEY = "VALUE"
+		information = "Function that could be hijacked if not used by official services"
 	strings:
 		$advapi32 = "advapi32.dll" wide ascii nocase
 		$cryptdll = "cryptdll.dll" wide ascii nocase
@@ -53,7 +53,7 @@ rule MD5_API {
 rule python_encryption{
 
 	meta:
-		KEY = "VALUE"
+		information = "Function that could be hijacked if not used by official services"
 
 	strings:
 		$Libraries1 = "PyCryptodome"
@@ -69,7 +69,7 @@ rule python_encryption{
 
 rule c_encryption{
 	meta:
-		KEY = "VALUE"
+		information = "Function that could be hijacked if not used by official services"
 	strings:
 		$func = "int crypto_sign_keypair(unsigned char *pk, unsigned char *sk);"
 		$Import = "libsodium"
@@ -80,7 +80,7 @@ rule c_encryption{
 
 rule cpp_encryption {
 	meta:
-		KEY = "VALUE"
+		information = "Function that could be hijacked if not used by official services"
 	strings:
 		$Import1 = "#ifndef CRYPTOPP_AES_H #define CRYPTOPP_AES_H" wide
 		$Import2 = "aria.h" 
@@ -92,7 +92,7 @@ rule cpp_encryption {
 
 rule register {
 	meta:
-		KEY = "VALUE"
+		information = "Function that could be hijacked if not used by official services"
 	strings:
 		$Shadow_prompt = {72 65 67 2E 65 78 65 20 61 64 64 20 27 48 4B 4C 4D 5C 53 6F 66 74 77 61 72 65 5C 50 6F 6C 69 63 69 65 73 5C 4D 69 63 72 6F 73 6F 66 74 5C 57 69 6E 64 6F 77 73 20 4E 54 5C 54 65 72 6D 69 6E 61 6C 20 53 65 72 76 69 63 65 73 27 20 2F 56 20 53 68 61 64 6F 77 20 2F 54 20 52 45 47 5F 44 57 4F 52 44 20 2F 44 20 32 20 2F 46}
 		$RDP_modifier1 = {72 65 67 2E 65 78 65 27 20 64 65 6C 65 74 65 20 27 48 4B 45 59 5F 43 55 52 52 45 4E 54 5F 55 53 45 52 5C 53 6F 66 74 77 61 72 65 5C 4D 69 63 72 6F 73 6F 66 74 5C 54 65 72 6D 69 6E 61 6C 20 53 65 72 76 65 72 20 43 6C 69 65 6E 74 5C 53 65 72 76 65 72 73 27 20 2F 66}
@@ -137,7 +137,7 @@ rule Hunting_Rule_ShikataGaNai
 rule encryption
 {
 	meta:
-		KEY = "VALUE"
+		information = "Function that could be hijacked if not used by official services"
 	strings:
 		$Py2 = {20 2B 3D 20 63 68 72 28 6F 72 64 28 [1 - 20] 5B 69 5D 29 20 5E 20 6F 72 64 28 [1 - 20] 5B 69 20 25 20 6C 65 6E 28 [1 - 20] 29 5D 29 29}
 		$Py1 = {66 6F 72 20 69 20 69 6E 20 72 61 6E 67 65 28 6C 65 6E 28 [1 - 30] 29 29 3A}

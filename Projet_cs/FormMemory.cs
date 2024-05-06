@@ -36,7 +36,7 @@ namespace Projet_cs
             System.DateTime Date_S = DateTime.Now;
             listbox_result_pids.Items.Add("Scan started at :" + Date_S);
             string pids = listBox_import_pids.GetItemText(listBox_import_pids.SelectedItem);
-            object command = "python3 C:\\Users\\basti\\Desktop\\Projet_cs_4\\Projet_cs\\Scan.py  --memory --add --pid " + pids;
+            object command = "python3 ..\\..\\Scan.py  --memory --add --pid " + pids;
             run_cmd(command);
             using (StreamReader file = new StreamReader("../../scan_p.txt"))
             {
@@ -70,7 +70,7 @@ namespace Projet_cs
             System.DateTime Date_S = DateTime.Now;
             listbox_result_pids.Items.Add("Scan started at :" + Date_S);
             string pids = listBox_import_pids.GetItemText(listBox_import_pids.SelectedItem);
-            object command = "python3 C:\\Users\\basti\\Desktop\\Projet_cs_4\\Projet_cs\\Scan.py  --memory --remove --pid " + pids;
+            object command = "python3 ..\\..\\Scan.py  --memory --remove --pid " + pids;
             run_cmd(command);
             using (StreamReader file = new StreamReader("../../scan_p.txt"))
             {
@@ -93,7 +93,7 @@ namespace Projet_cs
             System.DateTime Date_S = DateTime.Now;
             listbox_result_pids.Items.Add("Scan started at :" + Date_S);
             string pids = listBox_import_pids.GetItemText(listBox_import_pids.SelectedItem);
-            object command = "python3 C:\\Users\\basti\\Desktop\\Projet_cs_4\\Projet_cs\\Scan.py  --memory";
+            object command = "python3 ..\\..\\Scan.py  --memory";
             run_cmd(command);
             using (StreamReader file = new StreamReader("../../scan_p.txt"))
             {
@@ -183,7 +183,7 @@ namespace Projet_cs
         private void readdb()
         {
             listBox_action.Items.Clear();
-            string conSource = "Data Source=C:\\Users\\basti\\Desktop\\Projet_cs_4\\Projet_cs\\result2.db";
+            string conSource = "Data Source=..\\..\\result2.db";
             var connection = new SQLiteConnection(conSource);
             connection.Open();
             string query = "select * from result_scan_actions_process";
@@ -204,7 +204,7 @@ namespace Projet_cs
                 Process proc = Process.GetProcessById(System.Convert.ToInt16(str));
                 proc.Kill();
                 listBox_action.Items.Remove(listBox_action.SelectedItem);
-                string conSource = "Data Source=C:\\Users\\basti\\Desktop\\Projet_cs_4\\Projet_cs\\result2.db";
+                string conSource = "Data Source=..\\..\\result2.db";
                 var connection = new SQLiteConnection(conSource);
                 connection.Open();
                 string query = "DELETE from result_scan_actions_process WHERE pids='" + str + "';";

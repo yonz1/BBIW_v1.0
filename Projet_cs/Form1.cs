@@ -42,6 +42,7 @@ namespace Projet_cs
             public static Color color3 = Color.FromArgb(95, 77, 221);
             public static Color color4 = Color.FromArgb(249, 88, 155);
             public static Color color5 = Color.FromArgb(24, 161, 251);
+            public static Color color6 = Color.FromArgb(0, 74, 122);
             
         }
 
@@ -64,8 +65,6 @@ namespace Projet_cs
                 leftBoderBtn.Visible = true;
                 leftBoderBtn.BringToFront();
                 // Icon Current Child Form
-                iconCurrentChildForm.IconChar = currentbtn.IconChar;
-                iconCurrentChildForm.IconColor = color;
             }
         }
         private void DisableButton()
@@ -95,7 +94,6 @@ namespace Projet_cs
             panelDesktop.Tag = childForm;
             childForm.BringToFront();
             childForm.Show();
-            TitleChildForm.Text = "Home";
         }
 
         private void Dashboard_Click(object sender, EventArgs e)
@@ -137,9 +135,7 @@ namespace Projet_cs
         {
             DisableButton();
             leftBoderBtn.Visible = false;
-            iconCurrentChildForm.IconChar = IconChar.House;
-            iconCurrentChildForm.IconColor = Color.MediumPurple;
-            TitleChildForm.Text = "Home";
+           
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
@@ -189,5 +185,11 @@ namespace Projet_cs
 
         }
 
+        private void iconButton1_Click(object sender, EventArgs e)
+        {
+            !ActivateButton(sender, RGBColors.color6);
+            currentChildForm.Close();
+            Reset();
+        }
     }
 }

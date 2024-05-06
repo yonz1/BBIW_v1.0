@@ -140,9 +140,9 @@ namespace Projet_cs
             listbox_result.Items.Add("Scan started at :" + Date_S);
             string path = listBox_import.GetItemText(listBox_import.SelectedItem);
             ShannonEntropy(path);
-            object command = "python3 C:\\Users\\basti\\Desktop\\Projet_cs_4\\Projet_cs\\Scan.py  --imported " + path;
+            object command = "python3 ..\\..\\Scan.py --imported " + path;
             run_cmd(command);
-            using (StreamReader file = new StreamReader("../../scan_i.txt"))
+            using (StreamReader file = new StreamReader("..\\..\\scan_i.txt"))
             {
                 int counter = 0;
                 string ln;
@@ -225,7 +225,7 @@ namespace Projet_cs
             {
                 File.Delete(str);
                 MessageBox.Show("Succes");
-                string conSource = "Data Source=C:\\Users\\basti\\Desktop\\Projet_cs_4\\Projet_cs\\result2.db";
+                string conSource = "Data Source=..\\..\\result2.db";
                 var connection = new SQLiteConnection(conSource);
                 connection.Open();
                 string query = "DELETE from result_scan_actions WHERE file=" + str;
@@ -243,7 +243,7 @@ namespace Projet_cs
         private void readdb()
         {
             listBox_action.Items.Clear();
-            string conSource = "Data Source=C:\\Users\\basti\\Desktop\\Projet_cs_4\\Projet_cs\\result2.db";
+            string conSource = "Data Source=..\\..\\result2.db";
             var connection = new SQLiteConnection(conSource);
             connection.Open();
             string query = "select * from result_scan_actions";

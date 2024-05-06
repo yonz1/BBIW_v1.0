@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SQLite;
+using System.Runtime.InteropServices.WindowsRuntime;
 
 
 
@@ -46,13 +47,17 @@ namespace Projet_cs
             string query = query_i;
             var command = new SQLiteCommand(query, connection);
             var reader = command.ExecuteReader();
+            string rtot = null;
             while (reader.Read())
             {
+                //listbox_display.Items.Add(reader.FieldCount);
+                rtot = null;
                 for (int y = 0; y < reader.FieldCount; y++)
                 {
                     string myread = reader.GetString(y);
-                    listbox_display.Items.Add(myread + "\n");
+                    rtot = rtot + "|" + myread + "\n";
                 }
+                listbox_display.Items.Add(rtot);
             }
             connection.Close();
         }

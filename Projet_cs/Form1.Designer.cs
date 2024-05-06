@@ -40,11 +40,10 @@
             this.panelLogo = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.home_button = new FontAwesome.Sharp.IconButton();
             this.icon_minimize = new FontAwesome.Sharp.IconPictureBox();
             this.Icon_maximize = new FontAwesome.Sharp.IconPictureBox();
             this.Icon_exit = new FontAwesome.Sharp.IconPictureBox();
-            this.TitleChildForm = new System.Windows.Forms.Label();
-            this.iconCurrentChildForm = new FontAwesome.Sharp.IconPictureBox();
             this.panelShadow = new System.Windows.Forms.Panel();
             this.panelDesktop = new System.Windows.Forms.Panel();
             this.Clock = new System.Windows.Forms.Label();
@@ -57,7 +56,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.icon_minimize)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Icon_maximize)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Icon_exit)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.iconCurrentChildForm)).BeginInit();
             this.panelDesktop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
@@ -82,6 +80,7 @@
             // 
             // About
             // 
+            this.About.Cursor = System.Windows.Forms.Cursors.Help;
             this.About.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.About.FlatAppearance.BorderSize = 0;
             this.About.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -105,6 +104,7 @@
             // 
             // Pre_defined_Scan
             // 
+            this.Pre_defined_Scan.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Pre_defined_Scan.Dock = System.Windows.Forms.DockStyle.Top;
             this.Pre_defined_Scan.FlatAppearance.BorderSize = 0;
             this.Pre_defined_Scan.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -128,6 +128,7 @@
             // 
             // Memory_Scan
             // 
+            this.Memory_Scan.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Memory_Scan.Dock = System.Windows.Forms.DockStyle.Top;
             this.Memory_Scan.FlatAppearance.BorderSize = 0;
             this.Memory_Scan.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -151,6 +152,7 @@
             // 
             // Imported_Scan
             // 
+            this.Imported_Scan.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Imported_Scan.Dock = System.Windows.Forms.DockStyle.Top;
             this.Imported_Scan.FlatAppearance.BorderSize = 0;
             this.Imported_Scan.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -174,6 +176,7 @@
             // 
             // SQLite_console
             // 
+            this.SQLite_console.Cursor = System.Windows.Forms.Cursors.Hand;
             this.SQLite_console.Dock = System.Windows.Forms.DockStyle.Top;
             this.SQLite_console.FlatAppearance.BorderSize = 0;
             this.SQLite_console.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -197,6 +200,7 @@
             // 
             // Dashboard
             // 
+            this.Dashboard.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Dashboard.Dock = System.Windows.Forms.DockStyle.Top;
             this.Dashboard.FlatAppearance.BorderSize = 0;
             this.Dashboard.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -242,17 +246,40 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(25)))), ((int)(((byte)(62)))));
+            this.panel1.Controls.Add(this.home_button);
             this.panel1.Controls.Add(this.icon_minimize);
             this.panel1.Controls.Add(this.Icon_maximize);
             this.panel1.Controls.Add(this.Icon_exit);
-            this.panel1.Controls.Add(this.TitleChildForm);
-            this.panel1.Controls.Add(this.iconCurrentChildForm);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.ForeColor = System.Drawing.SystemColors.ControlText;
             this.panel1.Location = new System.Drawing.Point(245, 0);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(802, 75);
             this.panel1.TabIndex = 1;
             this.panel1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseDown);
+            // 
+            // home_button
+            // 
+            this.home_button.AllowDrop = true;
+            this.home_button.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.home_button.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(25)))), ((int)(((byte)(62)))));
+            this.home_button.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(25)))), ((int)(((byte)(62)))));
+            this.home_button.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(25)))), ((int)(((byte)(62)))));
+            this.home_button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.home_button.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.home_button.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.home_button.IconChar = FontAwesome.Sharp.IconChar.House;
+            this.home_button.IconColor = System.Drawing.Color.WhiteSmoke;
+            this.home_button.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.home_button.IconSize = 30;
+            this.home_button.Location = new System.Drawing.Point(394, 36);
+            this.home_button.Name = "home_button";
+            this.home_button.Size = new System.Drawing.Size(94, 33);
+            this.home_button.TabIndex = 5;
+            this.home_button.Text = "Home";
+            this.home_button.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.home_button.UseVisualStyleBackColor = true;
+            this.home_button.Click += new System.EventHandler(this.iconButton1_Click);
             // 
             // icon_minimize
             // 
@@ -304,32 +331,6 @@
             this.Icon_exit.TabIndex = 2;
             this.Icon_exit.TabStop = false;
             this.Icon_exit.Click += new System.EventHandler(this.Icon_exit_Click);
-            // 
-            // TitleChildForm
-            // 
-            this.TitleChildForm.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.TitleChildForm.AutoSize = true;
-            this.TitleChildForm.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(25)))), ((int)(((byte)(62)))));
-            this.TitleChildForm.ForeColor = System.Drawing.Color.Gainsboro;
-            this.TitleChildForm.Location = new System.Drawing.Point(313, 32);
-            this.TitleChildForm.Name = "TitleChildForm";
-            this.TitleChildForm.Size = new System.Drawing.Size(35, 13);
-            this.TitleChildForm.TabIndex = 1;
-            this.TitleChildForm.Text = "Home";
-            // 
-            // iconCurrentChildForm
-            // 
-            this.iconCurrentChildForm.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.iconCurrentChildForm.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(25)))), ((int)(((byte)(62)))));
-            this.iconCurrentChildForm.ForeColor = System.Drawing.Color.MediumPurple;
-            this.iconCurrentChildForm.IconChar = FontAwesome.Sharp.IconChar.House;
-            this.iconCurrentChildForm.IconColor = System.Drawing.Color.MediumPurple;
-            this.iconCurrentChildForm.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconCurrentChildForm.Location = new System.Drawing.Point(275, 23);
-            this.iconCurrentChildForm.Name = "iconCurrentChildForm";
-            this.iconCurrentChildForm.Size = new System.Drawing.Size(32, 32);
-            this.iconCurrentChildForm.TabIndex = 0;
-            this.iconCurrentChildForm.TabStop = false;
             // 
             // panelShadow
             // 
@@ -397,11 +398,9 @@
             this.panelLogo.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.icon_minimize)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Icon_maximize)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Icon_exit)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.iconCurrentChildForm)).EndInit();
             this.panelDesktop.ResumeLayout(false);
             this.panelDesktop.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
@@ -421,8 +420,6 @@
         private FontAwesome.Sharp.IconButton Dashboard;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Panel panel1;
-        private FontAwesome.Sharp.IconPictureBox iconCurrentChildForm;
-        private System.Windows.Forms.Label TitleChildForm;
         private System.Windows.Forms.Panel panelShadow;
         private System.Windows.Forms.Panel panelDesktop;
         private System.Windows.Forms.PictureBox pictureBox2;
@@ -431,6 +428,7 @@
         private FontAwesome.Sharp.IconPictureBox icon_minimize;
         private FontAwesome.Sharp.IconPictureBox Icon_maximize;
         private FontAwesome.Sharp.IconPictureBox Icon_exit;
+        private FontAwesome.Sharp.IconButton home_button;
     }
 }
 

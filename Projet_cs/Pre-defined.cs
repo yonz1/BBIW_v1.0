@@ -28,7 +28,7 @@ namespace Projet_cs
             listBox_result_predef.Items.Clear();
             System.DateTime Date_S = DateTime.Now;
             listBox_result_predef.Items.Add("Scan started at :" + Date_S);
-            object command = "python3 C:\\Users\\basti\\Desktop\\Projet_cs_4\\Projet_cs\\Scan.py  --predefined";
+            object command = "python3 ..\\..\\Scan.py  --predefined";
             run_cmd(command);
             //readdb();
             using (StreamReader file = new StreamReader("../../scan_pr.txt"))

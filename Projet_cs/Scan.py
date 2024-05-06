@@ -12,7 +12,10 @@ from datetime import datetime, timedelta
 import time
 import pathlib
 start_time = time.time()
-
+current_dir = os.getcwd()
+current_dir = current_dir.replace("C:\\", "/")
+current_dir = current_dir.replace("\\", "/")
+print(current_dir)
 
 ### Initialisation des listes de callback
 identifier = []
@@ -24,15 +27,15 @@ now = datetime.now()
 table_string = str(now.year) + "-" + str(now.month) + "-" + str(now.day) + " " + str(now.hour) + ":" +  str(now.minute) + ":" + str(now.second)
 
 
-file_i = open("/Users/basti/Desktop/Projet_cs_4/Projet_cs/scan_i.txt", "w")
-file_p = open("/Users/basti/Desktop/Projet_cs_4/Projet_cs/scan_p.txt", "w")
-file_pr = open("/Users/basti/Desktop/Projet_cs_4/Projet_cs/scan_pr.txt", "w")
+file_i = open("../../scan_i.txt", "w")
+file_p = open("../../scan_p.txt", "w")
+file_pr = open("../../scan_pr.txt", "w")
 file_i.truncate(0);
 file_p.truncate(0);
 file_pr.truncate(0);
 parser = argparse.ArgumentParser()
 parser.add_argument("--memory", help="Use Python scipt to scan memory", action="store_true")
-parser.add_argument("--fast", help="Use Python script to perform a fast scan")
+parser.add_argument("--fast", help="Use Python script to perform a fast scan", action="store_true")
 parser.add_argument("--predefined", help="Use Python script to scan a pre-defined list of files", action="store_true")
 parser.add_argument("--imported", help="Use Python script to perform a scan against imported files", type=str)
 parser.add_argument("--remove", help="Provide a PID to remove from the list", action="store_true")
@@ -45,20 +48,22 @@ args = parser.parse_args()
 
 
 ### Result_imported_db
-con_i = sqlite3.connect("C:\\Users\\basti\\Desktop\\Projet_cs_4\\Projet_cs\\result2.db")
+con_i = sqlite3.connect("../../result2.db")
 cur_i = con_i.cursor()
-cur_i.execute("delete from result_scan_test_manual2")
-#cur_i.execute("CREATE TABLE result_scan_actions_process(pids)")
+#cur_i.execute("delete from result_scan_test_manual2")
+
 
 
 ###  result_scan_test_manual2 pour le stockage des détection 
 ### result_scan_actions pour les actions de fichier imported
 
 ### ... pour le stockage des détection contre processus 
-### result result_scan_actions_process pour les actions de processus
+### result_scan_actions_process pour les actions de processus
 
 ### ... pour le stockage des détection contre les prédéfinies
 ### ... pour le stockage des actions contres les prédéfinies
+
+### result_scan_all pour le dashboard
 
 
 
@@ -74,10 +79,13 @@ def warning_callback(warning_type, message):
     return yara.CONTINUE
 
 
+### 
+
+
 ### Define rule
 rules = yara.compile(filepaths={
-  'namespace1':'/Users/basti/Desktop/Projet/Fichiers de Score/Score.yar', 
-  'namespace2':'/Users/basti/Desktop/Projet/Spyware/Spyware.yar'
+  'namespace1': '../../Score.yar', 
+  'namespace2': '../../Spyware.yar'
 })
 
 
@@ -94,10 +102,16 @@ if args.imported:
     argument = new_string.replace("\\", "/")
     file_i.write("Selected file : " + argument + "\n")
 
+    data = [ str(string)]
+    exist = cur_i.execute("SELECT COUNT(*) from result_scan_actions where file like ?", data)
+    count = str(exist.fetchall()).replace("(", "").replace(")", "").replace("[", "").replace("]", "").replace(",", "")
+    if (int(count) == 0):
+        cur_i.execute("INSERT INTO result_scan_all VALUES(?)", data)
+        con_i.commit()
+
     ### Matches
     matches = rules.match(argument, callback=mycallback_files, which_callbacks=yara.CALLBACK_MATCHES, warnings_callback=warning_callback)
     i = len(matches)
-    
     ### Insertion dans la base de données
     if (i > 0):
         data = [
@@ -109,8 +123,7 @@ if args.imported:
             print("insert")
             cur_i.execute("INSERT INTO result_scan_actions VALUES(?)", data)
             con_i.commit()
-            res = cur_i.execute("select * from result_scan_actions")
-            print(res.fetchall())
+
        
 
 
@@ -128,7 +141,7 @@ if args.imported:
             
 
     ### Ecriture de fin de programme
-    file_i.write("\n" + "\n" + "Number of detected thread : " + str(i) + "\n")
+    file_i.write("\n" + "\n" + "Number of detected threat : " + str(i) + "\n")
     delta = time.time() - start_time
     file_i.write("This program has been executed in " + str(delta) + " seconds" + "\n")
     n = 0
@@ -175,6 +188,10 @@ if args.memory:
                 file_p.write("With name : " + str(p.name()) + "\n")
                 file_p.write("With parent process : " + str(p.parent()) + "\n")
                 file_p.write("Lauched by the user : " + str(p.username()) + "\n")
+                
+                data = [ str(pid)]
+                cur_i.execute("INSERT INTO result_scan_all VALUES(?)", data)
+                con_i.commit()
                 matches = rules.match(pid=pid, callback=mycallback_process, which_callbacks=yara.CALLBACK_MATCHES, warnings_callback=warning_callback)
                 i = len(matches)
                 
@@ -186,7 +203,6 @@ if args.memory:
                      exist = cur_i.execute("SELECT COUNT(*) from result_scan_actions_process where pids like ?", data)
                      count = str(exist.fetchall()).replace("(", "").replace(")", "").replace("[", "").replace("]", "").replace(",", "")
                      if (int(count) == 0):
-                         print("insert")
                          cur_i.execute("INSERT INTO result_scan_actions_process VALUES(?)", data)
                          con_i.commit()
                          res = cur_i.execute("select * from result_scan_actions_process")
@@ -225,6 +241,9 @@ if args.memory:
         for pids in list_pid:
             try:
                 file_p.write("Scanning against pid : " + str(pids) + "\n")
+                data = [ str(pids)]
+                cur_i.execute("INSERT INTO result_scan_all VALUES(?)", data)
+                con_i.commit()
                 matches = rules.match(pid=pids, callback=mycallback_process, which_callbacks=yara.CALLBACK_MATCHES, warnings_callback=warning_callback)
             except yara.Error:
                 file_p.write("An error was detected while scanning the Process\n\n")
@@ -237,6 +256,9 @@ if args.memory:
         for pids in list_pid:
             try:
                 file_p.write("Scanning against pid : " + str(pids) + "\n")
+                data = [ str(pids)]
+                cur_i.execute("INSERT INTO result_scan_all VALUES(?)", data)
+                con_i.commit()
                 matches = rules.match(pid=pids, callback=mycallback_process, which_callbacks=yara.CALLBACK_MATCHES, warnings_callback=warning_callback)
             except yara.Error:
                 file_p.write("An error was detected while scanning the Process\n\n")
@@ -260,14 +282,17 @@ if args.predefined:
                 #data = str(data)
                 #data2 = data.replace("'", "").replace(",", "\n").replace("{", "").replace("}", "").replace("matches: True", "Detected threat against :\n")
                 #string_to_write = data2 + "\n" + "#############################" + "\n"
-                return yara.CALLBACK_CONTINUE
+                return yara.CALLBACK_CONTINUE 
             try:
-                matches = rules.match(x, callback=mycallback, which_callbacks=yara.CALLBACK_MATCHES, timeout=30)
+                data = [ str(x)]
+                cur_i.execute("INSERT INTO result_scan_all VALUES(?)", data)
+                con_i.commit()
+                matches = rules.match(x, callback=mycallback, which_callbacks=yara.CALLBACK_MATCHES, timeout=30, fast=args.fast)
     
                 i = len(matches)
                 print(i)
                 if (i > 0):
-                    a = "\n" + "Number of detected thread : " + str(i) + "\n" + "\n"
+                    a = "\n" + "Number of detected threat : " + str(i) + "\n" + "\n"
                     print("detected")
                     n = 0
                     #res = cur_i.execute("select * from result_scan_test_manual2")
