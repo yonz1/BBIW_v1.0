@@ -187,7 +187,6 @@ namespace Projet_cs
 
         private void iconButton1_Click(object sender, EventArgs e)
         {
-            !ActivateButton(sender, RGBColors.color6);
             currentChildForm.Close();
             Reset();
         }
