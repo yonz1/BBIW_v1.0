@@ -40,6 +40,7 @@
             this.panelLogo = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.Homebtn = new FontAwesome.Sharp.IconButton();
             this.icon_minimize = new FontAwesome.Sharp.IconPictureBox();
             this.Icon_maximize = new FontAwesome.Sharp.IconPictureBox();
             this.Icon_exit = new FontAwesome.Sharp.IconPictureBox();
@@ -48,7 +49,6 @@
             this.Clock = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.Homebtn = new FontAwesome.Sharp.IconButton();
             this.panelMenu.SuspendLayout();
             this.panelLogo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -258,6 +258,26 @@
             this.panel1.TabIndex = 1;
             this.panel1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseDown);
             // 
+            // Homebtn
+            // 
+            this.Homebtn.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.Homebtn.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.Homebtn.FlatAppearance.BorderSize = 0;
+            this.Homebtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Homebtn.ForeColor = System.Drawing.Color.Gainsboro;
+            this.Homebtn.IconChar = FontAwesome.Sharp.IconChar.House;
+            this.Homebtn.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(172)))), ((int)(((byte)(126)))), ((int)(((byte)(241)))));
+            this.Homebtn.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.Homebtn.IconSize = 32;
+            this.Homebtn.Location = new System.Drawing.Point(396, 22);
+            this.Homebtn.Name = "Homebtn";
+            this.Homebtn.Size = new System.Drawing.Size(129, 38);
+            this.Homebtn.TabIndex = 6;
+            this.Homebtn.Text = "Home";
+            this.Homebtn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.Homebtn.UseVisualStyleBackColor = true;
+            this.Homebtn.Click += new System.EventHandler(this.Homebtn_Click_1);
+            // 
             // icon_minimize
             // 
             this.icon_minimize.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -355,25 +375,6 @@
             // timer1
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
-            // Homebtn
-            // 
-            this.Homebtn.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.Homebtn.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.Homebtn.FlatAppearance.BorderSize = 0;
-            this.Homebtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Homebtn.ForeColor = System.Drawing.Color.Gainsboro;
-            this.Homebtn.IconChar = FontAwesome.Sharp.IconChar.House;
-            this.Homebtn.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(172)))), ((int)(((byte)(126)))), ((int)(((byte)(241)))));
-            this.Homebtn.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.Homebtn.IconSize = 32;
-            this.Homebtn.Location = new System.Drawing.Point(396, 22);
-            this.Homebtn.Name = "Homebtn";
-            this.Homebtn.Size = new System.Drawing.Size(129, 38);
-            this.Homebtn.TabIndex = 6;
-            this.Homebtn.Text = "Home";
-            this.Homebtn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.Homebtn.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 

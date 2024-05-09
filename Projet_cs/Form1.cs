@@ -64,6 +64,7 @@ namespace Projet_cs
                 leftBoderBtn.Location = new Point(0, currentbtn.Location.Y);
                 leftBoderBtn.Visible = true;
                 leftBoderBtn.BringToFront();
+                // Icon Current Child Form
                 Homebtn.IconChar = currentbtn.IconChar;
                 Homebtn.IconColor = color;
             }
@@ -190,10 +191,11 @@ namespace Projet_cs
         {
             this.WindowState = FormWindowState.Minimized;
         }
-        private void Homebtn_Click(object sender, EventArgs e)
+
+        private void Homebtn_Click_1(object sender, EventArgs e)
         {
-            currentChildForm.Close();
             Reset();
+            currentChildForm.Close();
         }
     }
 }
