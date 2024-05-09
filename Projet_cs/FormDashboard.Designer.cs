@@ -108,6 +108,7 @@
             this.Controls.Add(this.chart_scanned);
             this.Name = "FormDashboard";
             this.Text = "FormDashboard";
+            this.Load += new System.EventHandler(this.FormDashboard_Load);
             ((System.ComponentModel.ISupportInitialize)(this.chart_scanned)).EndInit();
             this.ResumeLayout(false);
 

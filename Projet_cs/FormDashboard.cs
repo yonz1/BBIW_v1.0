@@ -20,9 +20,13 @@ namespace Projet_cs
         public FormDashboard()
         {
             InitializeComponent();
+            listBox_lastimported.Items.Clear();
             listBox_lastimported.Items.Add("Last scanned files and PIDs : ");
             readdb_import();
-            //readdb_chart();
+            readdb_chart();
+                        string conSource = "Data Source=..\\..\\result2.db";
+            var connection = new SQLiteConnection(conSource);
+            connection.Open();
             //chart_scanned.Series[1].YValueMembers = "3";
         }
 
@@ -37,7 +41,7 @@ namespace Projet_cs
         }
         private void readdb_import()
         {
-            listBox_lastimported.Items.Clear();
+            int i = 0;
             string conSource = "Data Source=..\\..\\result2.db";
             var connection = new SQLiteConnection(conSource);
             connection.Open();
@@ -46,32 +50,74 @@ namespace Projet_cs
             var reader = command.ExecuteReader();
             while (reader.Read())
             {
+                if ( i != 15)
+                { 
                 listBox_lastimported.Items.Add(reader.GetString(0));
+                }
+                else
+                {
+                    return;
+                }
+                i++;
             }
             connection.Close();
         }
         private void readdb_chart()
         {
-            listBox_lastimported.Items.Clear();
             string conSource = "Data Source=..\\..\\result2.db";
             var connection = new SQLiteConnection(conSource);
             connection.Open();
             string query = "select date from result_scan_test_manual2";
             var command = new SQLiteCommand(query, connection);
             var reader = command.ExecuteReader();
+            List<string> Date = new List<string>();
             while (reader.Read())
             {
-                chart_scanned.Series[1].XValueMember = reader.GetString(0);
+                string date = reader.GetString(0);
+                if (Date.Count == 0)
+                {
+                    Date.Add(date);
+                }
+                else
+                {
+                    if (!Date.Contains(date))
+                    {
+                        Date.Add(date);
+                    }
+                }
             }
-            //query = "SELECT COUNT(offset) from result_scan_test_manual2";
-            //command = new SQLiteCommand(query, connection);
-            //reader = command.ExecuteReader();
-            //while (reader.Read())
-            //{
-            //    chart_scanned.Series[0].YValueMembers = reader.GetString(0);
-            //}
+
+            foreach (var item in Date)
+            {
+                //chart_scanned.Series[0].Points.AddXY(item, 2000);
+                string val = "'" + item + "'";
+                query = "SELECT COUNT(date) FROM result_scan_test_manual2 WHERE date=" + val;
+                command = new SQLiteCommand(query, connection);
+                reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    int Yvalue = reader.GetInt16(0);
+                    chart_scanned.Series[0].Points.AddXY(item, Yvalue);
+                }
+            }
+            /*try
+            {
+                for (int i = 0; i < Date.Count; i++)
+                {
+                    MessageBox.Show(System.Convert.ToString(Date));
+                    chart_scanned.Series["0"].Points.AddXY(Date[i], i);
+                }
+            }
+            
+
+            catch { MessageBox.Show("error"); }*/
+
             connection.Close();
         }
 
+        private void FormDashboard_Load(object sender, EventArgs e)
+        {
+            
+        }
     }
 }

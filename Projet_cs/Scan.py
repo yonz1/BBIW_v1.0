@@ -24,7 +24,7 @@ offset = []
 
 ### Définition du temps comme indicateur de scan 
 now = datetime.now()
-table_string = str(now.year) + "-" + str(now.month) + "-" + str(now.day) + " " + str(now.hour) + ":" +  str(now.minute) + ":" + str(now.second)
+table_string = str(now.year) + "-" + str(now.month) + "-" + str(now.day)
 
 
 file_i = open("../../scan_i.txt", "w")

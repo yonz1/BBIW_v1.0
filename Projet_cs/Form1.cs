@@ -64,7 +64,8 @@ namespace Projet_cs
                 leftBoderBtn.Location = new Point(0, currentbtn.Location.Y);
                 leftBoderBtn.Visible = true;
                 leftBoderBtn.BringToFront();
-                // Icon Current Child Form
+                Homebtn.IconChar = currentbtn.IconChar;
+                Homebtn.IconColor = color;
             }
         }
         private void DisableButton()
@@ -100,42 +101,51 @@ namespace Projet_cs
         {
             ActivateButton(sender, RGBColors.color);
             OpenChildForm(new FormDashboard());
+            Homebtn.Text = "Dashboard";
         }
 
         private void SQLite_console_Click(object sender, EventArgs e)
         {
             ActivateButton(sender, RGBColors.color1);
             OpenChildForm(new SQLite_console());
+            Homebtn.Text = "SQLite console";
         }
 
         private void Imported_Scan_Click(object sender, EventArgs e)
         {
             ActivateButton(sender, RGBColors.color2);
             OpenChildForm(new ScanImported());
+            Homebtn.Text = "Imported scan";
         }
 
         private void Memory_Scan_Click(object sender, EventArgs e)
         {
             ActivateButton(sender, RGBColors.color3);
             OpenChildForm(new FormMemory());
+            Homebtn.Text = "Memory scan";
         }
 
         private void Pre_defined_Scan_Click(object sender, EventArgs e)
         {
             ActivateButton(sender, RGBColors.color4);
             OpenChildForm(new FormPre_defined());
+            Homebtn.Text = "Pre-defined scan";
         }
 
         private void About_Click(object sender, EventArgs e)
         {
             ActivateButton(sender, RGBColors.color5);
             OpenChildForm(new FormAbout());
+            Homebtn.Text = "About";
         }
         private void Reset()
         {
             DisableButton();
             leftBoderBtn.Visible = false;
-           
+            Homebtn.IconChar = IconChar.House;
+            Homebtn.IconColor = RGBColors.color;
+            Homebtn.Text = "Home";
+
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
@@ -180,12 +190,7 @@ namespace Projet_cs
         {
             this.WindowState = FormWindowState.Minimized;
         }
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void iconButton1_Click(object sender, EventArgs e)
+        private void Homebtn_Click(object sender, EventArgs e)
         {
             currentChildForm.Close();
             Reset();

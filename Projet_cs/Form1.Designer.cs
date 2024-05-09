@@ -40,7 +40,6 @@
             this.panelLogo = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.home_button = new FontAwesome.Sharp.IconButton();
             this.icon_minimize = new FontAwesome.Sharp.IconPictureBox();
             this.Icon_maximize = new FontAwesome.Sharp.IconPictureBox();
             this.Icon_exit = new FontAwesome.Sharp.IconPictureBox();
@@ -49,6 +48,7 @@
             this.Clock = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.Homebtn = new FontAwesome.Sharp.IconButton();
             this.panelMenu.SuspendLayout();
             this.panelLogo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -80,7 +80,7 @@
             // 
             // About
             // 
-            this.About.Cursor = System.Windows.Forms.Cursors.Help;
+            this.About.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.About.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.About.FlatAppearance.BorderSize = 0;
             this.About.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -104,7 +104,7 @@
             // 
             // Pre_defined_Scan
             // 
-            this.Pre_defined_Scan.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.Pre_defined_Scan.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.Pre_defined_Scan.Dock = System.Windows.Forms.DockStyle.Top;
             this.Pre_defined_Scan.FlatAppearance.BorderSize = 0;
             this.Pre_defined_Scan.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -128,7 +128,7 @@
             // 
             // Memory_Scan
             // 
-            this.Memory_Scan.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.Memory_Scan.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.Memory_Scan.Dock = System.Windows.Forms.DockStyle.Top;
             this.Memory_Scan.FlatAppearance.BorderSize = 0;
             this.Memory_Scan.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -152,7 +152,7 @@
             // 
             // Imported_Scan
             // 
-            this.Imported_Scan.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.Imported_Scan.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.Imported_Scan.Dock = System.Windows.Forms.DockStyle.Top;
             this.Imported_Scan.FlatAppearance.BorderSize = 0;
             this.Imported_Scan.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -176,7 +176,7 @@
             // 
             // SQLite_console
             // 
-            this.SQLite_console.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.SQLite_console.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.SQLite_console.Dock = System.Windows.Forms.DockStyle.Top;
             this.SQLite_console.FlatAppearance.BorderSize = 0;
             this.SQLite_console.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -200,7 +200,7 @@
             // 
             // Dashboard
             // 
-            this.Dashboard.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.Dashboard.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.Dashboard.Dock = System.Windows.Forms.DockStyle.Top;
             this.Dashboard.FlatAppearance.BorderSize = 0;
             this.Dashboard.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -246,7 +246,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(25)))), ((int)(((byte)(62)))));
-            this.panel1.Controls.Add(this.home_button);
+            this.panel1.Controls.Add(this.Homebtn);
             this.panel1.Controls.Add(this.icon_minimize);
             this.panel1.Controls.Add(this.Icon_maximize);
             this.panel1.Controls.Add(this.Icon_exit);
@@ -257,29 +257,6 @@
             this.panel1.Size = new System.Drawing.Size(802, 75);
             this.panel1.TabIndex = 1;
             this.panel1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseDown);
-            // 
-            // home_button
-            // 
-            this.home_button.AllowDrop = true;
-            this.home_button.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.home_button.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(25)))), ((int)(((byte)(62)))));
-            this.home_button.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(25)))), ((int)(((byte)(62)))));
-            this.home_button.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(25)))), ((int)(((byte)(62)))));
-            this.home_button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.home_button.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.home_button.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.home_button.IconChar = FontAwesome.Sharp.IconChar.House;
-            this.home_button.IconColor = System.Drawing.Color.WhiteSmoke;
-            this.home_button.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.home_button.IconSize = 30;
-            this.home_button.Location = new System.Drawing.Point(394, 36);
-            this.home_button.Name = "home_button";
-            this.home_button.Size = new System.Drawing.Size(94, 33);
-            this.home_button.TabIndex = 5;
-            this.home_button.Text = "Home";
-            this.home_button.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.home_button.UseVisualStyleBackColor = true;
-            this.home_button.Click += new System.EventHandler(this.iconButton1_Click);
             // 
             // icon_minimize
             // 
@@ -379,6 +356,25 @@
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // Homebtn
+            // 
+            this.Homebtn.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.Homebtn.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.Homebtn.FlatAppearance.BorderSize = 0;
+            this.Homebtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Homebtn.ForeColor = System.Drawing.Color.Gainsboro;
+            this.Homebtn.IconChar = FontAwesome.Sharp.IconChar.House;
+            this.Homebtn.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(172)))), ((int)(((byte)(126)))), ((int)(((byte)(241)))));
+            this.Homebtn.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.Homebtn.IconSize = 32;
+            this.Homebtn.Location = new System.Drawing.Point(396, 22);
+            this.Homebtn.Name = "Homebtn";
+            this.Homebtn.Size = new System.Drawing.Size(129, 38);
+            this.Homebtn.TabIndex = 6;
+            this.Homebtn.Text = "Home";
+            this.Homebtn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.Homebtn.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -393,7 +389,6 @@
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Form1";
             this.Text = "Form1";
-            this.Load += new System.EventHandler(this.Form1_Load);
             this.panelMenu.ResumeLayout(false);
             this.panelLogo.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -428,7 +423,7 @@
         private FontAwesome.Sharp.IconPictureBox icon_minimize;
         private FontAwesome.Sharp.IconPictureBox Icon_maximize;
         private FontAwesome.Sharp.IconPictureBox Icon_exit;
-        private FontAwesome.Sharp.IconButton home_button;
+        private FontAwesome.Sharp.IconButton Homebtn;
     }
 }
 
