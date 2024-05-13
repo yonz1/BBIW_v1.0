@@ -10,16 +10,19 @@ using System.Windows.Forms;
 
 namespace Projet_cs
 {
-    public partial class FormAbout : Form
+    public partial class Form_add_rules : Form
     {
-        public FormAbout()
+        public Form_add_rules()
         {
             InitializeComponent();
-            About_first.Items.Add("Ce projet à été créer par...");
-            About_second.Items.Add("Cette application est composée de ... et permet de ....");
         }
 
-        private void About_first_SelectedIndexChanged(object sender, EventArgs e)
+        private void add_rules_button_child_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void View_rules_button_Click(object sender, EventArgs e)
         {
 
         }

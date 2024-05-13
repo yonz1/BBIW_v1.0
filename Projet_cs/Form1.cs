@@ -197,5 +197,17 @@ namespace Projet_cs
             Reset();
             currentChildForm.Close();
         }
+
+        private void panelDesktop_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void add_rules_button(object sender, EventArgs e)
+        {
+            ActivateButton(sender, RGBColors.color5);
+            OpenChildForm(new Form_add_rules());
+            Homebtn.Text = "Add Rules";
+        }
     }
 }

@@ -24,9 +24,6 @@ namespace Projet_cs
             listBox_lastimported.Items.Add("Last scanned files and PIDs : ");
             readdb_import();
             readdb_chart();
-                        string conSource = "Data Source=..\\..\\result2.db";
-            var connection = new SQLiteConnection(conSource);
-            connection.Open();
             //chart_scanned.Series[1].YValueMembers = "3";
         }
 

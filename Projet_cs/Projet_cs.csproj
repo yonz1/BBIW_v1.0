@@ -124,6 +124,12 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Form_add_rules.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_add_rules.Designer.cs">
+      <DependentUpon>Form_add_rules.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormAbout.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -170,6 +176,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormDashboard.resx">
       <DependentUpon>FormDashboard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_add_rules.resx">
+      <DependentUpon>Form_add_rules.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SQLite_console.resx">
       <DependentUpon>SQLite_console.cs</DependentUpon>

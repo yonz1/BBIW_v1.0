@@ -47,6 +47,7 @@
             this.About_first.Name = "About_first";
             this.About_first.Size = new System.Drawing.Size(337, 364);
             this.About_first.TabIndex = 0;
+            this.About_first.SelectedIndexChanged += new System.EventHandler(this.About_first_SelectedIndexChanged);
             // 
             // About_second
             // 
