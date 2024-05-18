@@ -56,6 +56,7 @@ namespace Projet_cs
             System.Diagnostics.Process proc = new System.Diagnostics.Process();
             proc.StartInfo = procstatinfo;
             proc.Start();
+            Cursor.Current = Cursors.WaitCursor;
             proc.WaitForExit();
 
             /*using (StreamReader file = new StreamReader("../../scan.txt"))

@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.panelMenu = new System.Windows.Forms.Panel();
+            this.Add_rules_button = new FontAwesome.Sharp.IconButton();
             this.About = new FontAwesome.Sharp.IconButton();
             this.Pre_defined_Scan = new FontAwesome.Sharp.IconButton();
             this.Memory_Scan = new FontAwesome.Sharp.IconButton();
@@ -49,7 +50,6 @@
             this.Clock = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.Add_rules_button = new FontAwesome.Sharp.IconButton();
             this.panelMenu.SuspendLayout();
             this.panelLogo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -80,9 +80,33 @@
             this.panelMenu.Size = new System.Drawing.Size(245, 657);
             this.panelMenu.TabIndex = 0;
             // 
+            // Add_rules_button
+            // 
+            this.Add_rules_button.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.Add_rules_button.Dock = System.Windows.Forms.DockStyle.Top;
+            this.Add_rules_button.FlatAppearance.BorderSize = 0;
+            this.Add_rules_button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Add_rules_button.ForeColor = System.Drawing.Color.Gainsboro;
+            this.Add_rules_button.IconChar = FontAwesome.Sharp.IconChar.FileArrowUp;
+            this.Add_rules_button.IconColor = System.Drawing.Color.Gainsboro;
+            this.Add_rules_button.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.Add_rules_button.IconSize = 32;
+            this.Add_rules_button.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.Add_rules_button.Location = new System.Drawing.Point(0, 471);
+            this.Add_rules_button.Margin = new System.Windows.Forms.Padding(2);
+            this.Add_rules_button.Name = "Add_rules_button";
+            this.Add_rules_button.Padding = new System.Windows.Forms.Padding(8, 0, 15, 0);
+            this.Add_rules_button.Size = new System.Drawing.Size(245, 60);
+            this.Add_rules_button.TabIndex = 7;
+            this.Add_rules_button.Text = "Add Rules";
+            this.Add_rules_button.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.Add_rules_button.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.Add_rules_button.UseVisualStyleBackColor = true;
+            this.Add_rules_button.Click += new System.EventHandler(this.add_rules_button);
+            // 
             // About
             // 
-            this.About.Cursor = System.Windows.Forms.Cursors.Help;
+            this.About.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.About.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.About.FlatAppearance.BorderSize = 0;
             this.About.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -106,7 +130,7 @@
             // 
             // Pre_defined_Scan
             // 
-            this.Pre_defined_Scan.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.Pre_defined_Scan.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.Pre_defined_Scan.Dock = System.Windows.Forms.DockStyle.Top;
             this.Pre_defined_Scan.FlatAppearance.BorderSize = 0;
             this.Pre_defined_Scan.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -130,7 +154,7 @@
             // 
             // Memory_Scan
             // 
-            this.Memory_Scan.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.Memory_Scan.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.Memory_Scan.Dock = System.Windows.Forms.DockStyle.Top;
             this.Memory_Scan.FlatAppearance.BorderSize = 0;
             this.Memory_Scan.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -154,7 +178,7 @@
             // 
             // Imported_Scan
             // 
-            this.Imported_Scan.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.Imported_Scan.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.Imported_Scan.Dock = System.Windows.Forms.DockStyle.Top;
             this.Imported_Scan.FlatAppearance.BorderSize = 0;
             this.Imported_Scan.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -178,7 +202,7 @@
             // 
             // SQLite_console
             // 
-            this.SQLite_console.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.SQLite_console.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.SQLite_console.Dock = System.Windows.Forms.DockStyle.Top;
             this.SQLite_console.FlatAppearance.BorderSize = 0;
             this.SQLite_console.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -202,7 +226,7 @@
             // 
             // Dashboard
             // 
-            this.Dashboard.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.Dashboard.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.Dashboard.Dock = System.Windows.Forms.DockStyle.Top;
             this.Dashboard.FlatAppearance.BorderSize = 0;
             this.Dashboard.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -378,30 +402,6 @@
             // timer1
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
-            // Add_rules_button
-            // 
-            this.Add_rules_button.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.Add_rules_button.Dock = System.Windows.Forms.DockStyle.Top;
-            this.Add_rules_button.FlatAppearance.BorderSize = 0;
-            this.Add_rules_button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Add_rules_button.ForeColor = System.Drawing.Color.Gainsboro;
-            this.Add_rules_button.IconChar = FontAwesome.Sharp.IconChar.FileArrowUp;
-            this.Add_rules_button.IconColor = System.Drawing.Color.Gainsboro;
-            this.Add_rules_button.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.Add_rules_button.IconSize = 32;
-            this.Add_rules_button.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.Add_rules_button.Location = new System.Drawing.Point(0, 471);
-            this.Add_rules_button.Margin = new System.Windows.Forms.Padding(2);
-            this.Add_rules_button.Name = "Add_rules_button";
-            this.Add_rules_button.Padding = new System.Windows.Forms.Padding(8, 0, 15, 0);
-            this.Add_rules_button.Size = new System.Drawing.Size(245, 60);
-            this.Add_rules_button.TabIndex = 7;
-            this.Add_rules_button.Text = "Add Rules";
-            this.Add_rules_button.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.Add_rules_button.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.Add_rules_button.UseVisualStyleBackColor = true;
-            this.Add_rules_button.Click += new System.EventHandler(this.add_rules_button);
             // 
             // Form1
             // 

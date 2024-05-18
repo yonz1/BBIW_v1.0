@@ -35,13 +35,14 @@
             // 
             // add_rules_button_child
             // 
+            this.add_rules_button_child.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.add_rules_button_child.Cursor = System.Windows.Forms.Cursors.Hand;
             this.add_rules_button_child.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.add_rules_button_child.ForeColor = System.Drawing.Color.Gainsboro;
             this.add_rules_button_child.IconChar = FontAwesome.Sharp.IconChar.Add;
             this.add_rules_button_child.IconColor = System.Drawing.Color.Gainsboro;
             this.add_rules_button_child.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.add_rules_button_child.Location = new System.Drawing.Point(302, 70);
+            this.add_rules_button_child.Location = new System.Drawing.Point(302, 178);
             this.add_rules_button_child.Name = "add_rules_button_child";
             this.add_rules_button_child.Size = new System.Drawing.Size(173, 61);
             this.add_rules_button_child.TabIndex = 0;
@@ -52,13 +53,14 @@
             // 
             // View_rules_button
             // 
+            this.View_rules_button.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.View_rules_button.Cursor = System.Windows.Forms.Cursors.Hand;
             this.View_rules_button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.View_rules_button.ForeColor = System.Drawing.Color.Gainsboro;
             this.View_rules_button.IconChar = FontAwesome.Sharp.IconChar.Eye;
             this.View_rules_button.IconColor = System.Drawing.Color.Gainsboro;
             this.View_rules_button.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.View_rules_button.Location = new System.Drawing.Point(302, 256);
+            this.View_rules_button.Location = new System.Drawing.Point(302, 288);
             this.View_rules_button.Name = "View_rules_button";
             this.View_rules_button.Size = new System.Drawing.Size(173, 61);
             this.View_rules_button.TabIndex = 1;

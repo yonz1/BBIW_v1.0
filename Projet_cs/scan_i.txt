@@ -1,5 +1,0 @@
-Selected file : /Users/basti/Desktop/tes_sgn.txt
-
-
-Number of detected threat : 0
-This program has been executed in 0.0260012149810791 seconds

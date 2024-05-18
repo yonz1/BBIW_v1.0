@@ -24,7 +24,7 @@ offset = []
 
 ### Définition du temps comme indicateur de scan 
 now = datetime.now()
-table_string = str(now.year) + "-" + str(now.month) + "-" + str(now.day)
+table_string = str(now.year) + "-" + str(now.month) + "-" + str(now.day) 
 
 
 file_i = open("../../scan_i.txt", "w")
@@ -81,13 +81,21 @@ def warning_callback(warning_type, message):
 
 ### 
 
-
 ### Define rule
 rules = yara.compile(filepaths={
-  'namespace1': '../../Score.yar', 
-  'namespace2': '../../Spyware.yar'
+  'namespace1':'../../Rules/Score.yar', 
+  'namespace2':'../../Rules/Spyware.yar',
+  'namespace3':'../../Rules/Cryptage_cle.yar',
+  'namespace4':'../../Rules/CryptoRansom.yar',
+  'namespace5':'../../Rules/DLL_injection.yar',
+  'namespace6':'../../Rules/HashRAT.yar',
+  'namespace7':'../../Rules/Mitre_Att&ck_technique.yar',
+  'namespace8':'../../Rules/Process_injection.yar',
+  'namespace9':'../../Rules/RansomHash.yar',
+  'namespace10':'../../Rules/Revshell.yar',
+  'namespace11':'../../Rules/shellcode.yar',
+  'namespace12':'../../Rules/trojan.yar'
 })
-
 
 # Imported File, conversion
 if args.imported:
@@ -109,7 +117,7 @@ if args.imported:
         cur_i.execute("INSERT INTO result_scan_all VALUES(?)", data)
         con_i.commit()
 
-    ### Matches
+    ### Matches 
     matches = rules.match(argument, callback=mycallback_files, which_callbacks=yara.CALLBACK_MATCHES, warnings_callback=warning_callback)
     i = len(matches)
     ### Insertion dans la base de données
@@ -349,6 +357,3 @@ if args.predefined:
 
 
     
-
-
-
