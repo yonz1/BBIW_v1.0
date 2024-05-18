@@ -106,8 +106,7 @@ namespace Projet_cs
                     Savefile.WriteLine(item.ToString());
                 }
                 Savefile.Close();
-                MessageBox.Show("Programm saved");
-
+                MessageBox.Show("Program saved");
             }
         }
 

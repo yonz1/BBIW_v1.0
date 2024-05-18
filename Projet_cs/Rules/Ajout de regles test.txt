@@ -1,0 +1,16 @@
+import 'pe'
+import 'hash'
+import 'math'
+
+rule <put the name of your rule> {
+
+  meta:
+     <type your metasdata here>
+
+    strings:
+      <type the string you want to detect as malicious>
+
+ conditions:
+       <put the condition for the the threat to be detected>
+
+}

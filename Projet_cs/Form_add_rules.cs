@@ -19,7 +19,8 @@ namespace Projet_cs
 
         private void add_rules_button_child_Click(object sender, EventArgs e)
         {
-
+            Form_entree_regles fe = new Form_entree_regles();
+            fe.Show();
         }
 
         private void View_rules_button_Click(object sender, EventArgs e)
