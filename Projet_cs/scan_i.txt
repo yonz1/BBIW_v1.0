@@ -1,0 +1,14 @@
+Selected file : /Users/basti/Desktop/testmatch36.txt
+############################################
+
+The engine detected a threat againt rule : Dangerous_function
+Action: "Fonctions pouvant être détourner si elle ne sont pas utiliser dans le contexte dun programme ou logiciel officiel et vérifier"
+
+The threat was an $File
+The dangerous strings was : [lsass.exe]
+Located at offset : 0
+
+
+
+Number of detected threat : 1
+This program has been executed in 0.025011777877807617 seconds

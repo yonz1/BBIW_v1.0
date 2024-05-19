@@ -66,7 +66,7 @@
             this.icon_minimize.IconColor = System.Drawing.Color.PowderBlue;
             this.icon_minimize.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.icon_minimize.IconSize = 19;
-            this.icon_minimize.Location = new System.Drawing.Point(709, 3);
+            this.icon_minimize.Location = new System.Drawing.Point(689, 3);
             this.icon_minimize.Name = "icon_minimize";
             this.icon_minimize.Size = new System.Drawing.Size(19, 21);
             this.icon_minimize.TabIndex = 7;
@@ -83,7 +83,7 @@
             this.Icon_maximize.IconColor = System.Drawing.Color.LightGreen;
             this.Icon_maximize.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.Icon_maximize.IconSize = 21;
-            this.Icon_maximize.Location = new System.Drawing.Point(734, 3);
+            this.Icon_maximize.Location = new System.Drawing.Point(723, 3);
             this.Icon_maximize.Name = "Icon_maximize";
             this.Icon_maximize.Size = new System.Drawing.Size(22, 21);
             this.Icon_maximize.TabIndex = 6;

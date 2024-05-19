@@ -73,8 +73,7 @@ namespace Projet_cs
         private void Save_filebtn_Click(object sender, EventArgs e)
         {
             string path = Directory.GetCurrentDirectory();
-            path = path + "\\..\\..\\Rules";
-            System.Windows.MessageBox.Show(path);
+            path = path + "\\..\\..\\Rules"; 
 
             System.Windows.Forms.OpenFileDialog ofd_transfer = new System.Windows.Forms.OpenFileDialog
             {
@@ -100,7 +99,7 @@ namespace Projet_cs
                     Savefile.Write(item.ToString());
                 }
                 Savefile.Close();
-                System.Windows.MessageBox.Show("Program saved");
+                System.Windows.MessageBox.Show("Your rules has been saved");
             }
             currenttext = richTextBox1.Text;
         }
@@ -108,7 +107,7 @@ namespace Projet_cs
         private void Clearbtn_Click(object sender, EventArgs e)
         {
             richTextBox1.Clear();
-            richTextBox1.Text = "import 'pe'\nimport 'hash'\nimport 'math'\n\nrule <put the name of your rule> {\n\n  meta:\n     <type your metasdata here>\n\n    strings:\n      <type the string you want to detect as malicious>\n\n conditions:\n       <put the condition for the the threat to be detected>\n\n}";
+            richTextBox1.Text = "import \"pe\"\nimport \"hash\"\nimport \"math\"\n\nrule <put the name of your rule> {\n\n  meta:\n     <type your metasdata here>\n\n    strings:\n      <type the string you want to detect as malicious>\n\n conditions:\n       <put the condition for the the threat to be detected>\n\n}";
         }
 
         private void importfilbtn_Click(object sender, EventArgs e)

@@ -1,4 +1,5 @@
 ﻿from msilib import Table
+from msilib.schema import File
 import pstats
 import sys
 import sysconfig
@@ -80,22 +81,36 @@ def warning_callback(warning_type, message):
 
 
 ### 
-
+dir_rule = current_dir + "../../Rules/"
 ### Define rule
-rules = yara.compile(filepaths={
-  'namespace1':'../../Rules/Score.yar', 
-  'namespace2':'../../Rules/Spyware.yar',
-  'namespace3':'../../Rules/Cryptage_cle.yar',
-  'namespace4':'../../Rules/CryptoRansom.yar',
-  'namespace5':'../../Rules/DLL_injection.yar',
-  'namespace6':'../../Rules/HashRAT.yar',
-  'namespace7':'../../Rules/Mitre_Att&ck_technique.yar',
-  'namespace8':'../../Rules/Process_injection.yar',
-  'namespace9':'../../Rules/RansomHash.yar',
-  'namespace10':'../../Rules/Revshell.yar',
-  'namespace11':'../../Rules/shellcode.yar',
-  'namespace12':'../../Rules/trojan.yar'
-})
+try: 
+    #for rule in dir_rule:
+    #    print(rule)
+   rules = yara.compile(filepaths={
+     'namespace1':'../../Rules/Score.yar', 
+     'namespace2':'../../Rules/Spyware.yar',
+     'namespace3':'../../Rules/Cryptage_cle.yar',
+     'namespace4':'../../Rules/CryptoRansom.yar',
+     'namespace5':'../../Rules/DLL_injection.yar',
+     'namespace6':'../../Rules/HashRAT.yar',
+     'namespace7':'../../Rules/Mitre_Att&ck_technique.yar',
+     'namespace8':'../../Rules/Process_injection.yar',
+     'namespace9':'../../Rules/RansomHash.yar',
+     'namespace10':'../../Rules/Revshell.yar',
+     'namespace11':'../../Rules/shellcode.yar',
+     'namespace12':'../../Rules/trojan.yar'
+   })
+except yara.error:
+    if args.imported:
+        file_i.write("Error occured while loading rules")
+    if args.memory:
+        file_p.write("Error occured while loading rules")
+    if args.predefined:
+        file_pr.write("Error occured while loading rules")
+        
+    
+    
+    
 
 # Imported File, conversion
 if args.imported:
