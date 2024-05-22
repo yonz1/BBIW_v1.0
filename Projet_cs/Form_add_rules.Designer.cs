@@ -36,6 +36,10 @@
             this.Stringsbox = new System.Windows.Forms.RichTextBox();
             this.Conditionsbox = new System.Windows.Forms.RichTextBox();
             this.Add_boxbtn = new FontAwesome.Sharp.IconButton();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // add_rules_button_child
@@ -43,7 +47,7 @@
             this.add_rules_button_child.Cursor = System.Windows.Forms.Cursors.Hand;
             this.add_rules_button_child.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.add_rules_button_child.ForeColor = System.Drawing.Color.Gainsboro;
-            this.add_rules_button_child.IconChar = FontAwesome.Sharp.IconChar.Add;
+            this.add_rules_button_child.IconChar = FontAwesome.Sharp.IconChar.Code;
             this.add_rules_button_child.IconColor = System.Drawing.Color.Gainsboro;
             this.add_rules_button_child.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.add_rules_button_child.IconSize = 40;
@@ -51,7 +55,7 @@
             this.add_rules_button_child.Name = "add_rules_button_child";
             this.add_rules_button_child.Size = new System.Drawing.Size(162, 43);
             this.add_rules_button_child.TabIndex = 0;
-            this.add_rules_button_child.Text = "Add Rules";
+            this.add_rules_button_child.Text = "Write rules";
             this.add_rules_button_child.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.add_rules_button_child.UseVisualStyleBackColor = true;
             this.add_rules_button_child.Click += new System.EventHandler(this.add_rules_button_child_Click);
@@ -97,7 +101,7 @@
             this.Metadatabox.Location = new System.Drawing.Point(12, 172);
             this.Metadatabox.MinimumSize = new System.Drawing.Size(744, 59);
             this.Metadatabox.Name = "Metadatabox";
-            this.Metadatabox.Size = new System.Drawing.Size(744, 74);
+            this.Metadatabox.Size = new System.Drawing.Size(744, 60);
             this.Metadatabox.TabIndex = 3;
             this.Metadatabox.Text = "";
             // 
@@ -149,12 +153,61 @@
             this.Add_boxbtn.UseVisualStyleBackColor = true;
             this.Add_boxbtn.Click += new System.EventHandler(this.Add_boxbtn_Click);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.Gainsboro;
+            this.label1.Location = new System.Drawing.Point(12, 98);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(72, 16);
+            this.label1.TabIndex = 7;
+            this.label1.Text = "Rule name";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.Gainsboro;
+            this.label2.Location = new System.Drawing.Point(12, 153);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(64, 16);
+            this.label2.TabIndex = 8;
+            this.label2.Text = "Metadata";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.Gainsboro;
+            this.label3.Location = new System.Drawing.Point(12, 244);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(48, 16);
+            this.label3.TabIndex = 9;
+            this.label3.Text = "Strings";
+            // 
+            // label4
+            // 
+            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.Color.Gainsboro;
+            this.label4.Location = new System.Drawing.Point(12, 387);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(70, 16);
+            this.label4.TabIndex = 10;
+            this.label4.Text = "Conditions";
+            // 
             // Form_add_rules
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(33)))), ((int)(((byte)(74)))));
             this.ClientSize = new System.Drawing.Size(786, 534);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.Add_boxbtn);
             this.Controls.Add(this.Conditionsbox);
             this.Controls.Add(this.Stringsbox);
@@ -166,6 +219,7 @@
             this.Name = "Form_add_rules";
             this.Text = "Add Rules";
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -178,5 +232,9 @@
         private System.Windows.Forms.RichTextBox Stringsbox;
         private System.Windows.Forms.RichTextBox Conditionsbox;
         private FontAwesome.Sharp.IconButton Add_boxbtn;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
     }
 }

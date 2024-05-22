@@ -1,5 +1,7 @@
-﻿from msilib import Table
+﻿import io
+from msilib import Table
 from msilib.schema import File
+from operator import length_hint
 import pstats
 import sys
 import sysconfig
@@ -22,6 +24,7 @@ print(current_dir)
 identifier = []
 instance = []
 offset = []
+valtot = []
 
 ### Définition du temps comme indicateur de scan 
 now = datetime.now()
@@ -31,6 +34,7 @@ table_string = str(now.year) + "-" + str(now.month) + "-" + str(now.day)
 file_i = open("../../scan_i.txt", "w")
 file_p = open("../../scan_p.txt", "w")
 file_pr = open("../../scan_pr.txt", "w")
+Save_rule = open("./Save_rule.txt", "w")
 file_i.truncate(0);
 file_p.truncate(0);
 file_pr.truncate(0);
@@ -81,37 +85,64 @@ def warning_callback(warning_type, message):
 
 
 ### 
-dir_rule = current_dir + "../../Rules/"
-### Define rule
-try: 
-    #for rule in dir_rule:
-    #    print(rule)
-   rules = yara.compile(filepaths={
-     'namespace1':'../../Rules/Score.yar', 
-     'namespace2':'../../Rules/Spyware.yar',
-     'namespace3':'../../Rules/Cryptage_cle.yar',
-     'namespace4':'../../Rules/CryptoRansom.yar',
-     'namespace5':'../../Rules/DLL_injection.yar',
-     'namespace6':'../../Rules/HashRAT.yar',
-     'namespace7':'../../Rules/Mitre_Att&ck_technique.yar',
-     'namespace8':'../../Rules/Process_injection.yar',
-     'namespace9':'../../Rules/RansomHash.yar',
-     'namespace10':'../../Rules/Revshell.yar',
-     'namespace11':'../../Rules/shellcode.yar',
-     'namespace12':'../../Rules/trojan.yar'
-   })
-except yara.error:
-    if args.imported:
-        file_i.write("Error occured while loading rules")
-    if args.memory:
-        file_p.write("Error occured while loading rules")
-    if args.predefined:
-        file_pr.write("Error occured while loading rules")
-        
-    
-    
+files = [f for f in pathlib.Path("../../Rules/").iterdir() if f.is_file()] 
+#buff = Buffer(0)
+i = 1;
+#### Define rule
+for rule in files:
+    try:  
+        rule = str(rule)
+        rule = rule.replace("\\", "/")
+        value = "namespace" +  str(i) + "\'" + ':' + "\'" + rule 
+        print(value)
+        i = i + 1
+        valtot.append(value)
+        #rules = yara.compile=(filepaths={value})
+        #print(rule)
+        #print(i)
+        #rules = yara.compile(filepath=rule)
+        #path = "../../Compiled_rule/" + "rules_" + str(i)
+        #f = open(path, 'w')
+        ##path = "../../Compiled_rules/rules"
+        #rules.save(path)
+        #i= i + 1
+        #buff = buff + Buffer(rules)
+       # rules = yara.compile(filepaths={
+       #  'namespace1':'../../Rules/Score.yar', 
+       #  'namespace2':'../../Rules/Spyware.yar',
+       #  'namespace3':'../../Rules/Cryptage_cle.yar',
+       #  'namespace4':'../../Rules/CryptoRansom.yar',
+       #  'namespace5':'../../Rules/DLL_injection.yar',
+       #  'namespace6':'../../Rules/HashRAT.yar',
+       #  'namespace7':'../../Rules/Mitre_Att&ck_technique.yar',
+       #  'namespace8':'../../Rules/Process_injection.yar',
+       #  'namespace9':'../../Rules/RansomHash.yar',
+       #  'namespace10':'../../Rules/Revshell.yar',
+       #  'namespace11':'../../Rules/shellcode.yar',
+       #  'namespace12':'../../Rules/trojan.yar'
+       #})
+    except yara.Error as e:
+        print("Une erreur s'est produite : ", e)
+        if args.imported:
+            file_i.write("Error occured while compiling a rules\n")
+        if args.memory:
+            file_p.write("Error occured while compiling a rules\n")
+        if args.predefined:
+            file_pr.write("Error occured while compiling a rules\n")
     
 
+print(valtot)
+rules = yara.compile(filepaths={valtot})
+#for x in range(i):
+#    try:
+#        print(x)
+#        path = "../../Compiled_rule/" + "rules_" + str(x)
+#        rules = yara.load(path)
+#        x = x + 1
+#        print("load : ", path)
+#    except yara.Error as e:
+#        print("Error while loading rules", e)
+#
 # Imported File, conversion
 if args.imported:
     def mycallback_files(data):
@@ -297,7 +328,7 @@ if args.memory:
 if args.predefined:
     totfiles = ["C:/Users/basti/Documents/", "C:/Users/basti/Desktop/", "C:/Users/basti/Downloads", "C:/Users/basti/Pictures"]
     for files in totfiles:
-        files = [f for f in pathlib.Path(files).iterdir() if f.is_file()] 
+        files = [f for f in pathlib.Path(files).iterdir() if f.is_file()]
         for x in files:
             x = str(x)
             file_pr.write("Scanning againt file : " + x + "\n")
