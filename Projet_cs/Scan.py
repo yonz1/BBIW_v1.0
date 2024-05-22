@@ -84,19 +84,19 @@ def warning_callback(warning_type, message):
     return yara.CONTINUE
 
 
-### 
-files = [f for f in pathlib.Path("../../Rules/").iterdir() if f.is_file()] 
-#buff = Buffer(0)
-i = 1;
+#### 
+#files = [f for f in pathlib.Path("../../Rules/").iterdir() if f.is_file()] 
+##buff = Buffer(0)
+#i = 1;
 #### Define rule
 for rule in files:
     try:  
-        rule = str(rule)
-        rule = rule.replace("\\", "/")
-        value = "namespace" +  str(i) + "\'" + ':' + "\'" + rule 
-        print(value)
-        i = i + 1
-        valtot.append(value)
+        #rule = str(rule)
+        #rule = rule.replace("\\", "/")
+        #value = "namespace" +  str(i) + "\'" + ':' + "\'" + rule 
+        #print(value)
+        #i = i + 1
+        #valtot.append(value)
         #rules = yara.compile=(filepaths={value})
         #print(rule)
         #print(i)
@@ -107,20 +107,20 @@ for rule in files:
         #rules.save(path)
         #i= i + 1
         #buff = buff + Buffer(rules)
-       # rules = yara.compile(filepaths={
-       #  'namespace1':'../../Rules/Score.yar', 
-       #  'namespace2':'../../Rules/Spyware.yar',
-       #  'namespace3':'../../Rules/Cryptage_cle.yar',
-       #  'namespace4':'../../Rules/CryptoRansom.yar',
-       #  'namespace5':'../../Rules/DLL_injection.yar',
-       #  'namespace6':'../../Rules/HashRAT.yar',
-       #  'namespace7':'../../Rules/Mitre_Att&ck_technique.yar',
-       #  'namespace8':'../../Rules/Process_injection.yar',
-       #  'namespace9':'../../Rules/RansomHash.yar',
-       #  'namespace10':'../../Rules/Revshell.yar',
-       #  'namespace11':'../../Rules/shellcode.yar',
-       #  'namespace12':'../../Rules/trojan.yar'
-       #})
+        rules = yara.compile(filepaths={
+         'namespace1':'../../Rules/Score.yar', 
+         'namespace2':'../../Rules/Spyware.yar',
+         'namespace3':'../../Rules/Cryptage_cle.yar',
+         'namespace4':'../../Rules/CryptoRansom.yar',
+         'namespace5':'../../Rules/DLL_injection.yar',
+         'namespace6':'../../Rules/HashRAT.yar',
+         'namespace7':'../../Rules/Mitre_Att&ck_technique.yar',
+         'namespace8':'../../Rules/Process_injection.yar',
+         'namespace9':'../../Rules/RansomHash.yar',
+         'namespace10':'../../Rules/Revshell.yar',
+         'namespace11':'../../Rules/shellcode.yar',
+         'namespace12':'../../Rules/trojan.yar'
+       })
     except yara.Error as e:
         print("Une erreur s'est produite : ", e)
         if args.imported:
@@ -131,8 +131,8 @@ for rule in files:
             file_pr.write("Error occured while compiling a rules\n")
     
 
-print(valtot)
-rules = yara.compile(filepaths={valtot})
+#print(valtot)
+#rules = yara.compile(filepaths={valtot})
 #for x in range(i):
 #    try:
 #        print(x)
