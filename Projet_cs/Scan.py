@@ -89,7 +89,7 @@ def warning_callback(warning_type, message):
 ##buff = Buffer(0)
 #i = 1;
 #### Define rule
-for rule in files:
+
     try:  
         #rule = str(rule)
         #rule = rule.replace("\\", "/")
