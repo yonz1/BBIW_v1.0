@@ -34,6 +34,7 @@ namespace Projet_cs
             procstatinfo.UseShellExecute = false;
             procstatinfo.CreateNoWindow = true;
             procstatinfo.RedirectStandardOutput = true;
+
             System.Diagnostics.Process proc = new System.Diagnostics.Process();
             proc.StartInfo = procstatinfo;
             proc.Start();
@@ -41,7 +42,7 @@ namespace Projet_cs
         }
         private void readdb(string query_i)
         {
-            string conSource = "Data Source=C:\\Users\\basti\\Desktop\\Projet_cs_4\\Projet_cs\\result2.db";
+            string conSource = "Data Source=..\\..\\result2.db";
             var connection = new SQLiteConnection(conSource);
             connection.Open();
             string query = query_i;

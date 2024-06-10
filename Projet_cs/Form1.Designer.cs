@@ -75,14 +75,14 @@
             this.panelMenu.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.panelMenu.Dock = System.Windows.Forms.DockStyle.Left;
             this.panelMenu.Location = new System.Drawing.Point(0, 0);
-            this.panelMenu.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.panelMenu.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panelMenu.Name = "panelMenu";
-            this.panelMenu.Size = new System.Drawing.Size(327, 809);
+            this.panelMenu.Size = new System.Drawing.Size(245, 609);
             this.panelMenu.TabIndex = 0;
             // 
             // Add_rules_button
             // 
-            this.Add_rules_button.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.Add_rules_button.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Add_rules_button.Dock = System.Windows.Forms.DockStyle.Top;
             this.Add_rules_button.FlatAppearance.BorderSize = 0;
             this.Add_rules_button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -92,11 +92,11 @@
             this.Add_rules_button.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.Add_rules_button.IconSize = 32;
             this.Add_rules_button.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.Add_rules_button.Location = new System.Drawing.Point(0, 580);
-            this.Add_rules_button.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Add_rules_button.Location = new System.Drawing.Point(0, 471);
+            this.Add_rules_button.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Add_rules_button.Name = "Add_rules_button";
-            this.Add_rules_button.Padding = new System.Windows.Forms.Padding(11, 0, 20, 0);
-            this.Add_rules_button.Size = new System.Drawing.Size(327, 74);
+            this.Add_rules_button.Padding = new System.Windows.Forms.Padding(8, 0, 15, 0);
+            this.Add_rules_button.Size = new System.Drawing.Size(245, 60);
             this.Add_rules_button.TabIndex = 7;
             this.Add_rules_button.Text = "Add Rules";
             this.Add_rules_button.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -106,7 +106,7 @@
             // 
             // About
             // 
-            this.About.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.About.Cursor = System.Windows.Forms.Cursors.Help;
             this.About.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.About.FlatAppearance.BorderSize = 0;
             this.About.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -116,11 +116,11 @@
             this.About.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.About.IconSize = 32;
             this.About.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.About.Location = new System.Drawing.Point(0, 735);
-            this.About.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.About.Location = new System.Drawing.Point(0, 549);
+            this.About.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.About.Name = "About";
-            this.About.Padding = new System.Windows.Forms.Padding(11, 0, 20, 0);
-            this.About.Size = new System.Drawing.Size(327, 74);
+            this.About.Padding = new System.Windows.Forms.Padding(8, 0, 15, 0);
+            this.About.Size = new System.Drawing.Size(245, 60);
             this.About.TabIndex = 6;
             this.About.Text = "About";
             this.About.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -130,7 +130,7 @@
             // 
             // Pre_defined_Scan
             // 
-            this.Pre_defined_Scan.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.Pre_defined_Scan.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Pre_defined_Scan.Dock = System.Windows.Forms.DockStyle.Top;
             this.Pre_defined_Scan.FlatAppearance.BorderSize = 0;
             this.Pre_defined_Scan.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -140,11 +140,11 @@
             this.Pre_defined_Scan.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.Pre_defined_Scan.IconSize = 32;
             this.Pre_defined_Scan.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.Pre_defined_Scan.Location = new System.Drawing.Point(0, 506);
-            this.Pre_defined_Scan.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Pre_defined_Scan.Location = new System.Drawing.Point(0, 411);
+            this.Pre_defined_Scan.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Pre_defined_Scan.Name = "Pre_defined_Scan";
-            this.Pre_defined_Scan.Padding = new System.Windows.Forms.Padding(11, 0, 20, 0);
-            this.Pre_defined_Scan.Size = new System.Drawing.Size(327, 74);
+            this.Pre_defined_Scan.Padding = new System.Windows.Forms.Padding(8, 0, 15, 0);
+            this.Pre_defined_Scan.Size = new System.Drawing.Size(245, 60);
             this.Pre_defined_Scan.TabIndex = 5;
             this.Pre_defined_Scan.Text = "Pre-defined Scan";
             this.Pre_defined_Scan.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -154,7 +154,7 @@
             // 
             // Memory_Scan
             // 
-            this.Memory_Scan.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.Memory_Scan.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Memory_Scan.Dock = System.Windows.Forms.DockStyle.Top;
             this.Memory_Scan.FlatAppearance.BorderSize = 0;
             this.Memory_Scan.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -164,11 +164,11 @@
             this.Memory_Scan.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.Memory_Scan.IconSize = 32;
             this.Memory_Scan.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.Memory_Scan.Location = new System.Drawing.Point(0, 432);
-            this.Memory_Scan.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Memory_Scan.Location = new System.Drawing.Point(0, 351);
+            this.Memory_Scan.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Memory_Scan.Name = "Memory_Scan";
-            this.Memory_Scan.Padding = new System.Windows.Forms.Padding(11, 0, 20, 0);
-            this.Memory_Scan.Size = new System.Drawing.Size(327, 74);
+            this.Memory_Scan.Padding = new System.Windows.Forms.Padding(8, 0, 15, 0);
+            this.Memory_Scan.Size = new System.Drawing.Size(245, 60);
             this.Memory_Scan.TabIndex = 4;
             this.Memory_Scan.Text = "Memory Scan";
             this.Memory_Scan.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -178,7 +178,7 @@
             // 
             // Imported_Scan
             // 
-            this.Imported_Scan.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.Imported_Scan.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Imported_Scan.Dock = System.Windows.Forms.DockStyle.Top;
             this.Imported_Scan.FlatAppearance.BorderSize = 0;
             this.Imported_Scan.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -188,11 +188,11 @@
             this.Imported_Scan.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.Imported_Scan.IconSize = 32;
             this.Imported_Scan.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.Imported_Scan.Location = new System.Drawing.Point(0, 358);
-            this.Imported_Scan.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Imported_Scan.Location = new System.Drawing.Point(0, 291);
+            this.Imported_Scan.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Imported_Scan.Name = "Imported_Scan";
-            this.Imported_Scan.Padding = new System.Windows.Forms.Padding(11, 0, 20, 0);
-            this.Imported_Scan.Size = new System.Drawing.Size(327, 74);
+            this.Imported_Scan.Padding = new System.Windows.Forms.Padding(8, 0, 15, 0);
+            this.Imported_Scan.Size = new System.Drawing.Size(245, 60);
             this.Imported_Scan.TabIndex = 3;
             this.Imported_Scan.Text = "Imported Scan";
             this.Imported_Scan.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -202,7 +202,7 @@
             // 
             // SQLite_console
             // 
-            this.SQLite_console.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.SQLite_console.Cursor = System.Windows.Forms.Cursors.Hand;
             this.SQLite_console.Dock = System.Windows.Forms.DockStyle.Top;
             this.SQLite_console.FlatAppearance.BorderSize = 0;
             this.SQLite_console.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -212,11 +212,11 @@
             this.SQLite_console.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.SQLite_console.IconSize = 32;
             this.SQLite_console.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.SQLite_console.Location = new System.Drawing.Point(0, 284);
-            this.SQLite_console.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.SQLite_console.Location = new System.Drawing.Point(0, 231);
+            this.SQLite_console.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.SQLite_console.Name = "SQLite_console";
-            this.SQLite_console.Padding = new System.Windows.Forms.Padding(11, 0, 20, 0);
-            this.SQLite_console.Size = new System.Drawing.Size(327, 74);
+            this.SQLite_console.Padding = new System.Windows.Forms.Padding(8, 0, 15, 0);
+            this.SQLite_console.Size = new System.Drawing.Size(245, 60);
             this.SQLite_console.TabIndex = 2;
             this.SQLite_console.Text = "SQL console";
             this.SQLite_console.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -226,7 +226,7 @@
             // 
             // Dashboard
             // 
-            this.Dashboard.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.Dashboard.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Dashboard.Dock = System.Windows.Forms.DockStyle.Top;
             this.Dashboard.FlatAppearance.BorderSize = 0;
             this.Dashboard.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -236,11 +236,11 @@
             this.Dashboard.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.Dashboard.IconSize = 32;
             this.Dashboard.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.Dashboard.Location = new System.Drawing.Point(0, 210);
-            this.Dashboard.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Dashboard.Location = new System.Drawing.Point(0, 171);
+            this.Dashboard.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Dashboard.Name = "Dashboard";
-            this.Dashboard.Padding = new System.Windows.Forms.Padding(11, 0, 20, 0);
-            this.Dashboard.Size = new System.Drawing.Size(327, 74);
+            this.Dashboard.Padding = new System.Windows.Forms.Padding(8, 0, 15, 0);
+            this.Dashboard.Size = new System.Drawing.Size(245, 60);
             this.Dashboard.TabIndex = 1;
             this.Dashboard.Text = "Dashboard";
             this.Dashboard.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -253,18 +253,17 @@
             this.panelLogo.Controls.Add(this.pictureBox1);
             this.panelLogo.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelLogo.Location = new System.Drawing.Point(0, 0);
-            this.panelLogo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.panelLogo.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panelLogo.Name = "panelLogo";
-            this.panelLogo.Size = new System.Drawing.Size(327, 210);
+            this.panelLogo.Size = new System.Drawing.Size(245, 171);
             this.panelLogo.TabIndex = 0;
             // 
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(16, 15);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
+            this.pictureBox1.Location = new System.Drawing.Point(12, 12);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(277, 190);
+            this.pictureBox1.Size = new System.Drawing.Size(208, 154);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
@@ -279,17 +278,16 @@
             this.panel1.Controls.Add(this.Icon_exit);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.panel1.Location = new System.Drawing.Point(327, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4);
+            this.panel1.Location = new System.Drawing.Point(245, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1069, 92);
+            this.panel1.Size = new System.Drawing.Size(783, 75);
             this.panel1.TabIndex = 1;
             this.panel1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseDown);
             // 
             // Homebtn
             // 
             this.Homebtn.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.Homebtn.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.Homebtn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Homebtn.FlatAppearance.BorderSize = 0;
             this.Homebtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Homebtn.ForeColor = System.Drawing.Color.Gainsboro;
@@ -297,10 +295,9 @@
             this.Homebtn.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(172)))), ((int)(((byte)(126)))), ((int)(((byte)(241)))));
             this.Homebtn.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.Homebtn.IconSize = 32;
-            this.Homebtn.Location = new System.Drawing.Point(528, 27);
-            this.Homebtn.Margin = new System.Windows.Forms.Padding(4);
+            this.Homebtn.Location = new System.Drawing.Point(386, 22);
             this.Homebtn.Name = "Homebtn";
-            this.Homebtn.Size = new System.Drawing.Size(172, 47);
+            this.Homebtn.Size = new System.Drawing.Size(129, 38);
             this.Homebtn.TabIndex = 6;
             this.Homebtn.Text = "Home";
             this.Homebtn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -316,11 +313,10 @@
             this.icon_minimize.IconChar = FontAwesome.Sharp.IconChar.WindowMinimize;
             this.icon_minimize.IconColor = System.Drawing.Color.PowderBlue;
             this.icon_minimize.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.icon_minimize.IconSize = 25;
-            this.icon_minimize.Location = new System.Drawing.Point(927, 4);
-            this.icon_minimize.Margin = new System.Windows.Forms.Padding(4);
+            this.icon_minimize.IconSize = 19;
+            this.icon_minimize.Location = new System.Drawing.Point(676, 3);
             this.icon_minimize.Name = "icon_minimize";
-            this.icon_minimize.Size = new System.Drawing.Size(25, 26);
+            this.icon_minimize.Size = new System.Drawing.Size(19, 21);
             this.icon_minimize.TabIndex = 4;
             this.icon_minimize.TabStop = false;
             this.icon_minimize.Click += new System.EventHandler(this.icon_minimize_Click);
@@ -329,16 +325,15 @@
             // 
             this.Icon_maximize.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.Icon_maximize.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(25)))), ((int)(((byte)(62)))));
-            this.Icon_maximize.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.Icon_maximize.Cursor = System.Windows.Forms.Cursors.SizeNESW;
             this.Icon_maximize.ForeColor = System.Drawing.Color.LightGreen;
             this.Icon_maximize.IconChar = FontAwesome.Sharp.IconChar.Expand;
             this.Icon_maximize.IconColor = System.Drawing.Color.LightGreen;
             this.Icon_maximize.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.Icon_maximize.IconSize = 26;
-            this.Icon_maximize.Location = new System.Drawing.Point(977, 4);
-            this.Icon_maximize.Margin = new System.Windows.Forms.Padding(4);
+            this.Icon_maximize.IconSize = 21;
+            this.Icon_maximize.Location = new System.Drawing.Point(714, 3);
             this.Icon_maximize.Name = "Icon_maximize";
-            this.Icon_maximize.Size = new System.Drawing.Size(29, 26);
+            this.Icon_maximize.Size = new System.Drawing.Size(22, 21);
             this.Icon_maximize.TabIndex = 3;
             this.Icon_maximize.TabStop = false;
             this.Icon_maximize.Click += new System.EventHandler(this.Icon_maximize_Click);
@@ -352,11 +347,10 @@
             this.Icon_exit.IconChar = FontAwesome.Sharp.IconChar.Xmark;
             this.Icon_exit.IconColor = System.Drawing.Color.LightCoral;
             this.Icon_exit.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.Icon_exit.IconSize = 26;
-            this.Icon_exit.Location = new System.Drawing.Point(1027, 4);
-            this.Icon_exit.Margin = new System.Windows.Forms.Padding(4);
+            this.Icon_exit.IconSize = 21;
+            this.Icon_exit.Location = new System.Drawing.Point(751, 3);
             this.Icon_exit.Name = "Icon_exit";
-            this.Icon_exit.Size = new System.Drawing.Size(43, 26);
+            this.Icon_exit.Size = new System.Drawing.Size(32, 21);
             this.Icon_exit.TabIndex = 2;
             this.Icon_exit.TabStop = false;
             this.Icon_exit.Click += new System.EventHandler(this.Icon_exit_Click);
@@ -365,10 +359,9 @@
             // 
             this.panelShadow.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(24)))), ((int)(((byte)(58)))));
             this.panelShadow.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelShadow.Location = new System.Drawing.Point(327, 92);
-            this.panelShadow.Margin = new System.Windows.Forms.Padding(4);
+            this.panelShadow.Location = new System.Drawing.Point(245, 75);
             this.panelShadow.Name = "panelShadow";
-            this.panelShadow.Size = new System.Drawing.Size(1069, 11);
+            this.panelShadow.Size = new System.Drawing.Size(783, 9);
             this.panelShadow.TabIndex = 2;
             // 
             // panelDesktop
@@ -377,10 +370,9 @@
             this.panelDesktop.Controls.Add(this.Clock);
             this.panelDesktop.Controls.Add(this.pictureBox2);
             this.panelDesktop.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelDesktop.Location = new System.Drawing.Point(327, 103);
-            this.panelDesktop.Margin = new System.Windows.Forms.Padding(4);
+            this.panelDesktop.Location = new System.Drawing.Point(245, 84);
             this.panelDesktop.Name = "panelDesktop";
-            this.panelDesktop.Size = new System.Drawing.Size(1069, 706);
+            this.panelDesktop.Size = new System.Drawing.Size(783, 525);
             this.panelDesktop.TabIndex = 3;
             this.panelDesktop.Paint += new System.Windows.Forms.PaintEventHandler(this.panelDesktop_Paint);
             // 
@@ -390,10 +382,9 @@
             this.Clock.AutoSize = true;
             this.Clock.Font = new System.Drawing.Font("Microsoft Sans Serif", 72F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Clock.ForeColor = System.Drawing.Color.Gainsboro;
-            this.Clock.Location = new System.Drawing.Point(312, 435);
-            this.Clock.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.Clock.Location = new System.Drawing.Point(224, 328);
             this.Clock.Name = "Clock";
-            this.Clock.Size = new System.Drawing.Size(525, 135);
+            this.Clock.Size = new System.Drawing.Size(417, 108);
             this.Clock.TabIndex = 1;
             this.Clock.Text = "00:00:00";
             // 
@@ -401,10 +392,9 @@
             // 
             this.pictureBox2.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(355, 108);
-            this.pictureBox2.Margin = new System.Windows.Forms.Padding(4);
+            this.pictureBox2.Location = new System.Drawing.Point(256, 63);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(471, 357);
+            this.pictureBox2.Size = new System.Drawing.Size(353, 290);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox2.TabIndex = 0;
             this.pictureBox2.TabStop = false;
@@ -415,16 +405,16 @@
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(30)))), ((int)(((byte)(68)))));
-            this.ClientSize = new System.Drawing.Size(1396, 809);
+            this.ClientSize = new System.Drawing.Size(1028, 609);
             this.Controls.Add(this.panelDesktop);
             this.Controls.Add(this.panelShadow);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panelMenu);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "Form1";
             this.Text = "Form1";
             this.panelMenu.ResumeLayout(false);

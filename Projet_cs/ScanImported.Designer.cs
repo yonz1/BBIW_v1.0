@@ -19,7 +19,6 @@
             }
             base.Dispose(disposing);
         }
-
         #region Windows Form Designer generated code
 
         /// <summary>
@@ -40,6 +39,7 @@
             this.listBox_action = new System.Windows.Forms.ListBox();
             this.removebtn = new System.Windows.Forms.Button();
             this.Quarantine = new System.Windows.Forms.Button();
+            this.button_browser = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // listbox_result
@@ -55,7 +55,7 @@
             this.listbox_result.ItemHeight = 20;
             this.listbox_result.Location = new System.Drawing.Point(40, 116);
             this.listbox_result.Name = "listbox_result";
-            this.listbox_result.Size = new System.Drawing.Size(358, 180);
+            this.listbox_result.Size = new System.Drawing.Size(358, 160);
             this.listbox_result.TabIndex = 0;
             // 
             // Add_file
@@ -71,7 +71,7 @@
             this.Add_file.Name = "Add_file";
             this.Add_file.Size = new System.Drawing.Size(60, 24);
             this.Add_file.TabIndex = 2;
-            this.Add_file.Text = "Add";
+            this.Add_file.Text = "Files";
             this.Add_file.UseVisualStyleBackColor = true;
             this.Add_file.Click += new System.EventHandler(this.Add_file_Click);
             // 
@@ -117,7 +117,7 @@
             this.remove.FlatAppearance.BorderSize = 2;
             this.remove.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.remove.ForeColor = System.Drawing.Color.Gainsboro;
-            this.remove.Location = new System.Drawing.Point(477, 321);
+            this.remove.Location = new System.Drawing.Point(538, 321);
             this.remove.Margin = new System.Windows.Forms.Padding(2);
             this.remove.Name = "remove";
             this.remove.Size = new System.Drawing.Size(60, 24);
@@ -134,7 +134,7 @@
             this.Clear.FlatAppearance.BorderSize = 2;
             this.Clear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Clear.ForeColor = System.Drawing.Color.Gainsboro;
-            this.Clear.Location = new System.Drawing.Point(550, 321);
+            this.Clear.Location = new System.Drawing.Point(602, 321);
             this.Clear.Margin = new System.Windows.Forms.Padding(2);
             this.Clear.Name = "Clear";
             this.Clear.Size = new System.Drawing.Size(60, 24);
@@ -156,7 +156,7 @@
             this.listBox_import.Location = new System.Drawing.Point(406, 116);
             this.listBox_import.Margin = new System.Windows.Forms.Padding(2);
             this.listBox_import.Name = "listBox_import";
-            this.listBox_import.Size = new System.Drawing.Size(358, 180);
+            this.listBox_import.Size = new System.Drawing.Size(358, 160);
             this.listBox_import.TabIndex = 7;
             // 
             // Scan_all
@@ -206,7 +206,7 @@
             this.listBox_action.ItemHeight = 20;
             this.listBox_action.Location = new System.Drawing.Point(43, 390);
             this.listBox_action.Name = "listBox_action";
-            this.listBox_action.Size = new System.Drawing.Size(450, 124);
+            this.listBox_action.Size = new System.Drawing.Size(450, 104);
             this.listBox_action.TabIndex = 10;
             this.listBox_action.Visible = false;
             // 
@@ -239,12 +239,31 @@
             this.Quarantine.UseVisualStyleBackColor = true;
             this.Quarantine.Visible = false;
             // 
+            // button_browser
+            // 
+            this.button_browser.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.button_browser.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button_browser.FlatAppearance.BorderColor = System.Drawing.Color.Gainsboro;
+            this.button_browser.FlatAppearance.BorderSize = 2;
+            this.button_browser.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button_browser.ForeColor = System.Drawing.Color.Gainsboro;
+            this.button_browser.Location = new System.Drawing.Point(470, 321);
+            this.button_browser.Margin = new System.Windows.Forms.Padding(2);
+            this.button_browser.Name = "button_browser";
+            this.button_browser.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.button_browser.Size = new System.Drawing.Size(60, 24);
+            this.button_browser.TabIndex = 13;
+            this.button_browser.Text = "Folder add";
+            this.button_browser.UseVisualStyleBackColor = true;
+            this.button_browser.Click += new System.EventHandler(this.button1_Click);
+            // 
             // ScanImported
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(33)))), ((int)(((byte)(74)))));
             this.ClientSize = new System.Drawing.Size(786, 534);
+            this.Controls.Add(this.button_browser);
             this.Controls.Add(this.Quarantine);
             this.Controls.Add(this.removebtn);
             this.Controls.Add(this.listBox_action);
@@ -264,7 +283,6 @@
 
         }
         #endregion
-
         private System.Windows.Forms.ListBox listbox_result;
         private System.Windows.Forms.Button Add_file;
         private System.Windows.Forms.Button Scan;
@@ -277,5 +295,6 @@
         private System.Windows.Forms.ListBox listBox_action;
         private System.Windows.Forms.Button removebtn;
         private System.Windows.Forms.Button Quarantine;
+        private System.Windows.Forms.Button button_browser;
     }
 }

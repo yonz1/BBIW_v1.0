@@ -38,7 +38,6 @@ namespace Projet_cs
             listBox_import.Items.Add("Imported file path : " + "\n");
             Showactionbtn.IconChar = FontAwesome.Sharp.IconChar.EyeSlash;
         }
-
         public int Size2
         {
             get
@@ -129,18 +128,32 @@ namespace Projet_cs
             if (ofd_transfer.ShowDialog() == DialogResult.OK)
             {
                 listBox_import.Items.Add(ofd_transfer.FileName);
+                
             }
         }
 
         private void Scan_Click(object sender, EventArgs e)
         {
+            try
+            {
+
+            
             listbox_result.Items.Clear();
             System.DateTime Date_S = DateTime.Now;
             listbox_result.Items.Add("Scan started at :" + Date_S);
             string path = listBox_import.GetItemText(listBox_import.SelectedItem);
-            ShannonEntropy(path);
-            object command = "python3 ..\\..\\Scan.py --imported " + path;
-            run_cmd(command);
+            FileAttributes attr = File.GetAttributes(path);
+            if ((attr & FileAttributes.Directory) == FileAttributes.Directory)
+            {
+                object command = "python3 ..\\..\\Scan.py --directory --imported " + path;
+                run_cmd(command);
+            }
+            else
+            {
+                object command = "python3 ..\\..\\Scan.py --imported " + path;
+                ShannonEntropy(path);
+                run_cmd(command);
+            }
             using (StreamReader file = new StreamReader("..\\..\\scan_i.txt"))
             {
                 int counter = 0;
@@ -148,14 +161,18 @@ namespace Projet_cs
                 while ((ln = file.ReadLine()) != null) {
                     listbox_result.Items.Add(ln);
                     counter++;
-
                 }
                 file.Close();
             }
             System.DateTime Date_F = DateTime.Now;
             listbox_result.Items.Add("Scan finished at :" + Date_F);
-            
-            
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(System.Convert.ToString(ex));
+            }
+
+
         }
 
         public void run_cmd(object command)
@@ -167,6 +184,7 @@ namespace Projet_cs
             System.Diagnostics.Process proc = new System.Diagnostics.Process();
             proc.StartInfo = procstatinfo;
             proc.Start();
+            //MessageBox.Show("Executed");
             Cursor.Current = Cursors.WaitCursor;
             proc.WaitForExit();
         }
@@ -184,7 +202,24 @@ namespace Projet_cs
 
         private void Scan_all_Click(object sender, EventArgs e)
         {
-
+            listbox_result.Items.Clear();
+            System.DateTime Date_S = DateTime.Now;
+            listbox_result.Items.Add("Scan started at :" + Date_S);
+            foreach (string path in listBox_import.Items)
+            {
+                FileAttributes attr = File.GetAttributes(path);
+                if ((attr & FileAttributes.Directory) == FileAttributes.Directory)
+                {
+                    object command = "python3 ..\\..\\Scan.py --directory --imported " + path;
+                    run_cmd(command);
+                }
+                else
+                {
+                    object command = "python3 ..\\..\\Scan.py --imported " + path;
+                    ShannonEntropy(path);
+                    run_cmd(command);
+                }
+            }
         }
         private void ScanImported_Load(object sender, EventArgs e)
         {
@@ -412,5 +447,18 @@ namespace Projet_cs
             Clear2();
             return;
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            FolderBrowserDialog folderDlg = new FolderBrowserDialog();
+            folderDlg.ShowNewFolderButton = true;
+            DialogResult result = folderDlg.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                listBox_import.Items.Add(folderDlg.SelectedPath);
+                Environment.SpecialFolder root = folderDlg.RootFolder;
+            }
+        }
+
     }
 }

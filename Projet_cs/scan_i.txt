@@ -1,0 +1,11 @@
+Total files in directory : 3
+Selected file : \Users\Bastien\Desktop\RAT\HashRAT.yar
+Number of detected threat in this file : 0
+Selected file : \Users\Bastien\Desktop\RAT\Revshell.yar
+Number of detected threat in this file : 0
+Selected file : \Users\Bastien\Desktop\RAT\Score.yar
+Number of detected threat in this file : 0
+
+
+Total number of detected threat : 0
+This program has been executed in 0.16849684715270996 seconds
